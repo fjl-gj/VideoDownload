@@ -18,6 +18,7 @@
 # ///////////////////////////////////////////////////////////////
 import os
 
+
 # APP FUNCTIONS
 # ///////////////////////////////////////////////////////////////
 class Functions:
@@ -26,7 +27,7 @@ class Functions:
     # ///////////////////////////////////////////////////////////////
     def set_svg_icon(icon_name):
         app_path = os.path.abspath(os.getcwd())
-        folder = "gui/images/svg_icons/"
+        folder = "static/images/svg_icons/"
         path = os.path.join(app_path, folder)
         icon = os.path.normpath(os.path.join(path, icon_name))
         return icon
@@ -35,7 +36,7 @@ class Functions:
     # ///////////////////////////////////////////////////////////////
     def set_svg_image(icon_name):
         app_path = os.path.abspath(os.getcwd())
-        folder = "gui/images/svg_images/"
+        folder = "static/images/svg_images/"
         path = os.path.join(app_path, folder)
         icon = os.path.normpath(os.path.join(path, icon_name))
         return icon
@@ -44,7 +45,7 @@ class Functions:
     # ///////////////////////////////////////////////////////////////
     def set_image(image_name):
         app_path = os.path.abspath(os.getcwd())
-        folder = "gui/images/images/"
+        folder = "static/images/images/"
         path = os.path.join(app_path, folder)
         image = os.path.normpath(os.path.join(path, image_name))
         return image

@@ -16,4 +16,4 @@
 
 # PY CREDITS
 # ///////////////////////////////////////////////////////////////
-from . py_credits import PyCredits
+from .py_credits import PyCredits

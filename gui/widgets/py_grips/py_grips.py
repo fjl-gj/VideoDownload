@@ -16,16 +16,20 @@
 
 # IMPORT PACKAGES AND MODULES
 # ///////////////////////////////////////////////////////////////
-import sys
 
 # IMPORT QT CORE
 # ///////////////////////////////////////////////////////////////
-from qt_core import *
+
 
 # PY GRIPS
 # ///////////////////////////////////////////////////////////////
+from PySide6.QtCore import QRect, QSize
+from PySide6.QtGui import QCursor, Qt
+from PySide6.QtWidgets import QWidget, QSizeGrip, QFrame
+
+
 class PyGrips(QWidget):
-    def __init__(self, parent, position, disable_color = False):
+    def __init__(self, parent, position, disable_color=False):
 
         # SETUP UI
         # ///////////////////////////////////////////////////////////////
@@ -41,7 +45,7 @@ class PyGrips(QWidget):
             grip = QSizeGrip(self.wi.top_left_grip)
             grip.setFixedSize(self.wi.top_left_grip.size())
             self.setGeometry(5, 5, 15, 15)
-            
+
             # ENABLE COLOR
             if disable_color:
                 self.wi.top_left_grip.setStyleSheet("background: transparent")
@@ -53,7 +57,7 @@ class PyGrips(QWidget):
             grip = QSizeGrip(self.wi.top_right_grip)
             grip.setFixedSize(self.wi.top_right_grip.size())
             self.setGeometry(self.parent.width() - 20, 5, 15, 15)
-            
+
             # ENABLE COLOR
             if disable_color:
                 self.wi.top_right_grip.setStyleSheet("background: transparent")
@@ -65,7 +69,7 @@ class PyGrips(QWidget):
             grip = QSizeGrip(self.wi.bottom_left_grip)
             grip.setFixedSize(self.wi.bottom_left_grip.size())
             self.setGeometry(5, self.parent.height() - 20, 15, 15)
-            
+
             # ENABLE COLOR
             if disable_color:
                 self.wi.bottom_left_grip.setStyleSheet("background: transparent")
@@ -77,7 +81,7 @@ class PyGrips(QWidget):
             grip = QSizeGrip(self.wi.bottom_right_grip)
             grip.setFixedSize(self.wi.bottom_right_grip.size())
             self.setGeometry(self.parent.width() - 20, self.parent.height() - 20, 15, 15)
-            
+
             # ENABLE COLOR
             if disable_color:
                 self.wi.bottom_right_grip.setStyleSheet("background: transparent")
@@ -97,6 +101,7 @@ class PyGrips(QWidget):
                 geo.setTop(geo.bottom() - height)
                 self.parent.setGeometry(geo)
                 event.accept()
+
             self.wi.top_grip.mouseMoveEvent = resize_top
 
             # ENABLE COLOR
@@ -116,6 +121,7 @@ class PyGrips(QWidget):
                 height = max(self.parent.minimumHeight(), self.parent.height() + delta.y())
                 self.parent.resize(self.parent.width(), height)
                 event.accept()
+
             self.wi.bottom_grip.mouseMoveEvent = resize_bottom
 
             # ENABLE COLOR
@@ -137,6 +143,7 @@ class PyGrips(QWidget):
                 geo.setLeft(geo.right() - width)
                 self.parent.setGeometry(geo)
                 event.accept()
+
             self.wi.left_grip.mouseMoveEvent = resize_left
 
             # ENABLE COLOR
@@ -155,6 +162,7 @@ class PyGrips(QWidget):
                 width = max(self.parent.minimumWidth(), self.parent.width() + delta.x())
                 self.parent.resize(width, self.parent.height())
                 event.accept()
+
             self.wi.right_grip.mouseMoveEvent = resize_right
 
             # ENABLE COLOR

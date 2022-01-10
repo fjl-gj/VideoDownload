@@ -19,17 +19,22 @@
 import json
 import os
 
+
 # APP SETTINGS
 # ///////////////////////////////////////////////////////////////
+from gui.downloader.log import logger
+
+
 class Settings(object):
     # APP PATH
     # ///////////////////////////////////////////////////////////////
     json_file = "settings.json"
-    app_path = os.path.abspath(os.getcwd())
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    app_path = os.path.join(BASE_DIR, 'static')
     settings_path = os.path.normpath(os.path.join(app_path, json_file))
     if not os.path.isfile(settings_path):
-        print(f"WARNING: \"settings.json\" not found! check in the folder {settings_path}")
-    
+        logger(f"WARNING: \"settings.json\" not found! check in the folder {settings_path}")
+
     # INIT SETTINGS
     # ///////////////////////////////////////////////////////////////
     def __init__(self):

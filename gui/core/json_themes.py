@@ -23,8 +23,13 @@ import os
 # ///////////////////////////////////////////////////////////////
 from gui.core.json_settings import Settings
 
+
 # APP THEMES
 # ///////////////////////////////////////////////////////////////
+from gui.downloader.log import logger
+from gui.downloader.setting.global_var_ import globals_var
+
+
 class Themes(object):
     # LOAD SETTINGS
     # ///////////////////////////////////////////////////////////////
@@ -33,11 +38,12 @@ class Themes(object):
 
     # APP PATH
     # ///////////////////////////////////////////////////////////////
-    json_file = f"gui/themes/{_settings['theme_name']}.json"
-    app_path = os.path.abspath(os.getcwd())
-    settings_path = os.path.normpath(os.path.join(app_path, json_file))
+    json_file = f"{globals_var.THEME}.json"
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    app_path = os.path.join(BASE_DIR, 'static')
+    settings_path = os.path.normpath(os.path.join(os.path.join(app_path, 'themes'), json_file))
     if not os.path.isfile(settings_path):
-        print(f"WARNING: \"gui/themes/{_settings['theme_name']}.json\" not found! check in the folder {settings_path}")
+        logger(f"WARNING: \"gui/themes/{_settings['theme_name']}.json\" not found! check in the folder {settings_path}")
 
     # INIT SETTINGS
     # ///////////////////////////////////////////////////////////////

@@ -16,32 +16,56 @@
 
 # IMPORT QT CORE
 # ///////////////////////////////////////////////////////////////
-from qt_core import *
+from PySide6.QtCore import QEvent, QModelIndex, QPersistentModelIndex, Signal
+from PySide6.QtGui import QColor, Qt
+from PySide6.QtWidgets import QTableWidget, QTableWidgetItem, QAbstractItemView
 
 # IMPORT STYLE
 # ///////////////////////////////////////////////////////////////
-from . style import *
+from .style import *
+
 
 # PY PUSH BUTTON
 # ///////////////////////////////////////////////////////////////
 class PyTableWidget(QTableWidget):
+    cellExited = Signal(int, int)
+    itemExited = Signal(QTableWidgetItem)
+
     def __init__(
-        self, 
-        radius = 8,
-        color = "#FFF",
-        bg_color = "#444",
-        selection_color = "#FFF",
-        header_horizontal_color = "#333",
-        header_vertical_color = "#444",
-        bottom_line_color = "#555",
-        grid_line_color = "#555",
-        scroll_bar_bg_color = "#FFF",
-        scroll_bar_btn_color = "#3333",
-        context_color = "#00ABE8"
+            self,
+            radius=8,
+            color="#FFF",
+            # bg_color="#1B1E23",
+            bg_color="#2D333B",
+            selection_color="#22272E",
+            header_horizontal_color="#22262C",
+            header_vertical_color="#22262C",
+            bottom_line_color="#555",
+            grid_line_color="#555",
+            scroll_bar_bg_color="#FFF",
+            scroll_bar_btn_color="#333",
+            context_color="#00ABE8",
+            is_action=False,
+            # last_row='',
     ):
         super().__init__()
 
         # PARAMETERS
+        if is_action:
+            self._last_index = QPersistentModelIndex()
+            self.viewport().installEventFilter(self)
+            self.setMouseTracking(True)
+            self.setShowGrid(False)
+            self.setFocusPolicy(Qt.NoFocus)
+            self.setSelectionMode(QAbstractItemView.ContiguousSelection)
+            self.setSelectionBehavior(QAbstractItemView.SelectRows)
+            self.setCornerButtonEnabled(False)
+            self.verticalHeader().setVisible(False)
+            self.setMouseTracking(True)
+        self.current_row = -1
+        # self.last_row = last_row
+
+        # self.cellEntered.connect(lambda row, cloum: self.entered_cell(row))
 
         # SET STYLESHEET
         self.set_stylesheet(
@@ -60,31 +84,94 @@ class PyTableWidget(QTableWidget):
 
     # SET STYLESHEET
     def set_stylesheet(
-        self,
-        radius,
-        color,
-        bg_color,
-        header_horizontal_color,
-        header_vertical_color,
-        selection_color,
-        bottom_line_color,
-        grid_line_color,
-        scroll_bar_bg_color,
-        scroll_bar_btn_color,
-        context_color
+            self,
+            radius,
+            color,
+            bg_color,
+            header_horizontal_color,
+            header_vertical_color,
+            selection_color,
+            bottom_line_color,
+            grid_line_color,
+            scroll_bar_bg_color,
+            scroll_bar_btn_color,
+            context_color
     ):
         # APPLY STYLESHEET
         style_format = style.format(
-            _radius = radius,          
-            _color = color,
-            _bg_color = bg_color,
-            _header_horizontal_color = header_horizontal_color,
-            _header_vertical_color = header_vertical_color,
-            _selection_color = selection_color,
-            _bottom_line_color = bottom_line_color,
-            _grid_line_color = grid_line_color,
-            _scroll_bar_bg_color = scroll_bar_bg_color,
-            _scroll_bar_btn_color = scroll_bar_btn_color,
-            _context_color = context_color
+            _radius=radius,
+            _color=color,
+            _bg_color=bg_color,
+            _header_horizontal_color=header_horizontal_color,
+            _header_vertical_color=header_vertical_color,
+            _selection_color=selection_color,
+            _bottom_line_color=bottom_line_color,
+            _grid_line_color=grid_line_color,
+            _scroll_bar_bg_color=scroll_bar_bg_color,
+            _scroll_bar_btn_color=scroll_bar_btn_color,
+            _context_color=context_color
         )
         self.setStyleSheet(style_format)
+        return style_format
+
+    # def mouseMoveEvent(self, event):
+    #     row = self.indexAt(event.pos()).row()
+    #     print(row)
+    #     self.updateRow(row)
+    #
+    # def leaveEvent(self, event):
+    #     print("离开")
+    #     self.setHoverRow(-1)
+    #
+    # def updateRow(self, row):
+    #     if row == self.current_row:
+    #         return
+    #
+    # def setHoverRow(self, hover_row):
+    #     self.hover_row = hover_row
+    # def entered_cell(self, row):
+    #     print(row)
+    #     for i in range(1, 4):
+    #         self.item(row, i).setBackground(QColor("#262A31"))
+
+    def eventFilter(self, widget, event):
+        if widget is self.viewport():
+            index = self._last_index
+            if event.type() == QEvent.MouseMove:
+                index = self.indexAt(event.pos())
+            elif event.type() == QEvent.Leave:
+                index = QModelIndex()
+            if index != self._last_index:
+                row = self._last_index.row()
+                column = self._last_index.column()
+                item = self.item(row, column)
+                if item is not None:
+                    self.itemExited.emit(item)
+                self.cellExited.emit(row, column)
+                self._last_index = QPersistentModelIndex(index)
+        return QTableWidget.eventFilter(self, widget, event)
+
+    # def is_entered(self, item, is_entered):
+    #     if is_entered:
+    #         self.handleItemEntered(item)
+    #     else:
+    #         self.handleItemExited(item)
+
+    def handleItemEntered(self, item):
+        pass
+        # for i in range(0, 4):
+        #     self.item(item.row(), i).setBackground(QColor("#262A31"))
+        # self.cellWidget(item.row(), 4).download_button.setStyleSheet("background-color:#037aff ;"
+        #                                              "border-color: none; padding-left: 10px;"
+        #                                              "padding-right: 0px; ; gridline-color: #555;"
+        #                                              "border-radius: 8px; border-bottom: 1px solid #555;")
+
+    def handleItemExited(self, item):
+        pass
+        # for i in range(0, 4):
+        #     self.item(item.row(), i).setBackground(QTableWidgetItem().background())
+        # self.cellWidget(item.row(), 4).download_button.setStyleSheet("background-color:#4a5a71; "
+        #                                              "border-color: none; padding-left: 10px;"
+        #                                              "padding-right: 0px; "
+        #                                              "gridline-color: #555; border-radius: 8px;"
+        #                                              "border-bottom: 1px solid #555;")

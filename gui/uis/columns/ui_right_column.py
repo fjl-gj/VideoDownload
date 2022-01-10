@@ -16,7 +16,9 @@
 
 # IMPORT QT CORE
 # ///////////////////////////////////////////////////////////////
-from qt_core import *
+from PySide6.QtCore import QSize, QCoreApplication, QMetaObject
+from PySide6.QtGui import QFont, Qt
+from PySide6.QtWidgets import QVBoxLayout, QStackedWidget, QWidget, QLabel
 
 
 class Ui_RightColumn(object):
@@ -98,13 +100,12 @@ class Ui_RightColumn(object):
 
         self.main_pages_layout.addWidget(self.menus)
 
-
         self.retranslateUi(RightColumn)
 
         self.menus.setCurrentIndex(1)
 
-
         QMetaObject.connectSlotsByName(RightColumn)
+
     # setupUi
 
     def retranslateUi(self, RightColumn):
@@ -112,6 +113,6 @@ class Ui_RightColumn(object):
         self.label_1.setText(QCoreApplication.translate("RightColumn", u"Menu 1 - Right Menu", None))
         self.label_2.setText(QCoreApplication.translate("RightColumn", u"Menu 2 - Right Menu", None))
         self.label_3.setText(QCoreApplication.translate("RightColumn", u"This is just an example menu.\n"
-"Add Qt Widgets or your custom widgets here.", None))
+                                                                       "Add Qt Widgets or your custom widgets here.",
+                                                        None))
     # retranslateUi
-

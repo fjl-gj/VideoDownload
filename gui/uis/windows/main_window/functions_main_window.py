@@ -16,15 +16,17 @@
 
 # IMPORT PACKAGES AND MODULES
 # ///////////////////////////////////////////////////////////////
-import sys
 
 # IMPORT QT CORE
 # ///////////////////////////////////////////////////////////////
-from qt_core import *
 
 # LOAD UI MAIN
 # ///////////////////////////////////////////////////////////////
-from . ui_main import *
+from PySide6.QtCore import QPropertyAnimation, QEasingCurve, QParallelAnimationGroup
+from PySide6.QtWidgets import QPushButton
+
+from .ui_main import *
+
 
 # FUNCTIONS
 class MainFunctions():
@@ -43,15 +45,15 @@ class MainFunctions():
 
     # SET LEFT COLUMN PAGES
     # ///////////////////////////////////////////////////////////////
-    def set_left_column_menu(
-        self,
-        menu,
-        title,
-        icon_path
-    ):
-        self.ui.left_column.menus.menus.setCurrentWidget(menu)
-        self.ui.left_column.title_label.setText(title)
-        self.ui.left_column.icon.set_icon(icon_path)
+    # def set_left_column_menu(
+    #         self,
+    #         menu,
+    #         title,
+    #         icon_path
+    # ):
+    #     self.ui.left_column.menus.menus.setCurrentWidget(menu)
+    #     self.ui.left_column.title_label.setText(title)
+    #     self.ui.left_column.icon.set_icon(icon_path)
 
     # RETURN IF LEFT COLUMN IS VISIBLE
     # ///////////////////////////////////////////////////////////////
@@ -85,7 +87,7 @@ class MainFunctions():
     # ///////////////////////////////////////////////////////////////
     def get_left_menu_btn(self, object_name):
         return self.ui.left_menu.findChild(QPushButton, object_name)
-    
+
     # LEDT AND RIGHT COLUMNS / SHOW / HIDE
     # ///////////////////////////////////////////////////////////////
     def toggle_left_column(self):
@@ -121,9 +123,9 @@ class MainFunctions():
         if right_box_width == minimum_right and direction == "right":
             right_width = maximum_right
         else:
-            right_width = minimum_right       
+            right_width = minimum_right
 
-        # ANIMATION LEFT BOX        
+            # ANIMATION LEFT BOX
         self.left_box = QPropertyAnimation(self.ui.left_column_frame, b"minimumWidth")
         self.left_box.setDuration(time_animation)
         self.left_box.setStartValue(left_box_width)
