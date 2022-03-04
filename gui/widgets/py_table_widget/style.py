@@ -11,6 +11,7 @@ QTableWidget {{
 }}
 /*
 QTableWidget::item:hover {{
+
 	background-color: {_selection_color};
 }}*/
 
@@ -21,6 +22,7 @@ QTableWidget QTableCornerButton::section {{
     border: none;
 	background-color: {_header_horizontal_color};
 	padding: 3px;
+	
     border-top-left-radius: {_radius}px;
 }}
 QHeaderView::section:horizontal
