@@ -17,7 +17,7 @@
 # IMPORT QT CORE
 # ///////////////////////////////////////////////////////////////
 from PySide6.QtCore import QEvent, QModelIndex, QPersistentModelIndex, Signal
-from PySide6.QtGui import QColor, Qt
+from PySide6.QtGui import Qt
 from PySide6.QtWidgets import QTableWidget, QTableWidgetItem, QAbstractItemView
 
 # IMPORT STYLE

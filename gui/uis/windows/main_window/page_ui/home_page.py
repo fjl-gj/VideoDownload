@@ -51,7 +51,7 @@ class PyLinkParse(QWidget):
             self.url_id = result['url_id']
             self.webpage_url = result['webpage_url']
             self.result = [{'title': result['title'], 'duration': result['duration'], 'url_id': result.get('url_id')}]
-            self.title = result['title']
+            self.title = result['title'].replace("'", '')
             self.uploader = result['uploader']
             self.duration = result['duration']
             self.cove = result['cove'] if result['cove'] else ''

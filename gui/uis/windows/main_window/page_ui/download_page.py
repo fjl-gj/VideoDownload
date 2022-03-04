@@ -195,7 +195,7 @@ class PyDownloadWidget(QWidget):
     def directory_changed (self):
         if self.init_down:
             if not os.path.exists(self.file_path_name):
-                print(self.pause_status)
+                logger.info(self.pause_status)
                 if self.pause_status or self.load_progress_bar.value == 100:
                     self.init_down = 0
                     # self.file_not_exists = QLabel('files does not exists')
@@ -219,7 +219,6 @@ class PyDownloadWidget(QWidget):
     def file_handling(self):
         btn = self.sender()
         x = btn.objectName()
-        print(x, type(x))
         if x == '2':
             delete_single_line_record({'id': self.id})
             if os.path.exists(self.file_path_name):
@@ -356,7 +355,7 @@ class PyDownloadWidget(QWidget):
             message.setText("Download link invalid\nPlease download again!!!")
             message.exec()
         # resp = requests.get(url, headers=_headers, stream=True, timeout=5)
-        print(f'{self.down_file_size}, {self.size}, {url}, {self.file_path_name}')
+        logger.info(f'{self.down_file_size}, {self.size}, {url}, {self.file_path_name}')
 
         with open(self.file_path_name, 'ab') as file:
             logger.info("下载中")
@@ -394,7 +393,7 @@ class PyDownloadWidget(QWidget):
             # if os.path.exists(self.file_path_name):
             if os.path.exists(self.file_path_name):
                 self.load_button.addWidget(self.load_open_folder)
-                print("执行成功")
+                logger.info("执行成功")
             else:
                 self.values = 0
                 self.load_progress_bar.value = 0

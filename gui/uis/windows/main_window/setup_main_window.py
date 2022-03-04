@@ -229,7 +229,6 @@ class SetupMainWindow:
             clipboard_text = mime_data.text().strip()
             link = self.home_page.home_link_input.text()
             if clipboard_text:
-                logger.info(f'{clipboard_text}, {link}')
                 if link == clipboard_text:
                     return False
                 else:

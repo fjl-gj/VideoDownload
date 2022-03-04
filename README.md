@@ -1,25 +1,34 @@
-# PyOneDark Qt Widgets Modern GUI - With PySide6
+# VideoDownload 
+#### According to the [GUI](https://github.com/Wanderson-Magalhaes/PyOneDark_Qt_Widgets_Modern_GUI) project
 
-![PyOneDark - Capa](https://user-images.githubusercontent.com/60605512/127739671-653eccb8-49da-4244-ae48-a8ae9b9b6fb2.png)
+###### GUI Style
+Home 
+![home1](static/images/gui_style/home1.png)
+![home2](static/images/gui_style/home2.png)
 
-> ## :gift: **//// DONATE ////**
-> ## 🔗 Donate (Gumroad): https://gum.co/mHsRC
-> This interface is free for any use, but if you are going to use it commercially, consider helping to maintain this project and others with a donation by Gumroado at the link above. This helps to keep this and other projects active.
+Download
+![download1](static/images/gui_style/download1.png)
 
-> **Warning**: this project was created using PySide6 and Python 3.9, using previous versions can cause compatibility problems.
+Setting
+![setting](static/images/gui_style/setting1.png)
 
-# YouTube - Presentation And Tutorials
-Presentation and tutorial video with the main functions of the user interface.
-> 🔗 Presentation - https://youtu.be/1v5errwE8ew
 
-> 🔗 Trailer - https://youtu.be/EJ8XApAl4aw
+### Project configuration mode
 
-> **TUTORIALS:**
+#### Download the program file
+#### Git Clone files
 
-> Tutorial 01: https://youtu.be/QQGlTGYCMg0
+##### Windows\MacOS
 
-> Tutorial 02: https://youtu.be/LwKre2proDk
+Download the Python configuration environment
 
-> Tutorial 03: https://youtu.be/eUT4J9Ukg8g
+```commandline
+git clone https://github.com/fjl-gj/VideoDownload.git
 
-> Simple Text Editor - https://youtu.be/v7nh_bSumNQ
+
+pip install ./static/requirements
+
+```
+
+
+
