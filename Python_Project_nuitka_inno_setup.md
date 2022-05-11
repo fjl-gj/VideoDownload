@@ -1,5 +1,7 @@
 # VideoDown Project
 
+详情查看个人网站:https://fjlgj.top/index.php/2021/11/26/python_project_nuitka_inno_setup/
+
 如果按照往常开发中的环境项目结构，加上需要的依赖，一套运行环境下来大概在`400MB`左右
 
 其中`PySide6` 就有`150MB`
@@ -622,5 +624,3 @@ Filename: "{app}\static\install_packge.bat"; StatusMsg: "InstallDependency packa
 然后找到封装好的应用
 
 ![image-20211123184142233](C:\Users\Administration\AppData\Roaming\Typora\typora-user-images\image-20211123184142233.png)
-
-以上就是打包封装，如果有了解可以咨询，后面可以出一个视频操作
