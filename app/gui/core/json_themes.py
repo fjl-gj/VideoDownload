@@ -21,7 +21,7 @@ import os
 
 # IMPORT SETTINGS
 # ///////////////////////////////////////////////////////////////
-from app.common.constantx import THEMES_FILE_PATH
+from app.common.constantx import THEMES_PATH
 from app.gui.core.json_settings import Settings
 
 
@@ -29,6 +29,9 @@ from app.gui.core.json_settings import Settings
 # ///////////////////////////////////////////////////////////////
 from app.gui.downloader.log import logger
 from app.gui.downloader.setting.global_var_ import globals_var
+
+THEMES_FILE_NAME = f"{globals_var.THEME}.json"
+THEMES_FILE_PATH = os.path.join(THEMES_PATH, THEMES_FILE_NAME)
 
 
 class Themes(object):
@@ -44,6 +47,7 @@ class Themes(object):
     # app_path = os.path.join(BASE_DIR, 'static')
     # settings_path = os.path.normpath(os.path.join(os.path.join(app_path, 'themes'), json_file))
     # settings_path = os.path.normpath(os.path.join())
+
     settings_path = THEMES_FILE_PATH
     if not os.path.isfile(settings_path):
         logger.error(f"WARNING: \"gui/themes/{_settings['theme_name']}.json\" not found! check in the folder {settings_path}")

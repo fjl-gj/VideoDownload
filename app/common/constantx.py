@@ -1,17 +1,21 @@
 import os
 
-from app.gui.downloader.setting.global_var_ import globals_var
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 # app
 APP_PATH = os.path.join(BASE_DIR, "app")
 
 # themes
-THEMES_PATH = os.path.join(APP_PATH, "themes")
-THEMES_FILE_NAME = f"{globals_var.THEME}.json"
-THEMES_FILE_PATH = os.path.join(THEMES_PATH, THEMES_FILE_NAME)
+THEMES_PATH = os.path.join(BASE_DIR, "themes")
 
 # conf
 CONF_PATH = os.path.join(BASE_DIR, "conf")
 CONF_FILE_NAME = "settings.json"
 CONF_FILE_PATH = os.path.join(CONF_PATH, CONF_FILE_NAME)
+
+# global_var.ini
+GLOBAL_VAR_FILE_NAME = "global_var.ini"
+GLOBAL_VAR_FILE_PATH = os.path.join(CONF_PATH, GLOBAL_VAR_FILE_NAME)
+
+# resource download path
+FILE_DOWNLOAD_PATH = os.path.join(BASE_DIR, "resources")

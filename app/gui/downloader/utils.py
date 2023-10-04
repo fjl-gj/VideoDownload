@@ -29,15 +29,15 @@ def byte_to_mb(bytes):
 
 def check_proxy(text):
     http_proxy = {}
-    if text:
-        if ';' in text:
-            list_proxy = text.split(';')
-            for i in list_proxy:
-                url_proxy = i.split("://")
-                if url_proxy[0].strip() == "http":
-                    http_proxy['http'] = url_proxy[1].strip()
-                if url_proxy[0].strip() == "https":
-                    http_proxy['https'] = url_proxy[1].strip()
+    if not text and ';' not in text:
+        return http_proxy
+    list_proxy = text.split(';')
+    for i in list_proxy:
+        url_proxy = i.split("://")
+        if url_proxy[0].strip() == "http":
+            http_proxy['http'] = url_proxy[1].strip()
+        if url_proxy[0].strip() == "https":
+            http_proxy['https'] = url_proxy[1].strip()
     return http_proxy
 
 

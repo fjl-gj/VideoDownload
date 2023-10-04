@@ -9,14 +9,17 @@ from PySide6.QtWidgets import QDialog, QFormLayout, QHBoxLayout, QLabel, QListWi
 
 from app.gui.core.functions import Functions
 from app.gui.downloader.log.log import logger
-from app.gui.downloader.setting.database_action import delete_single_line_record, select_record, update_single_line_record
-from app.gui.downloader.setting.global_var_ import globals_var
+from app.gui.downloader.setting.database_action import delete_single_line_record, select_record, \
+    update_single_line_record
+from app.gui.downloader.setting.global_var_ import globals_var, GlobalVar
 from app.gui.downloader.utils import byte_to_mb
 from app.gui.downloader.utils import result_proxy
 from app.gui.uis.tools.utils import replace_other_char
 from app.gui.widgets import PyCircularProgress, PyIconButton, PyLabel, PyListWidget, PyMessageBox, PyPushButton
 
-Task = ThreadPoolExecutor(max_workers = int(globals_var.THREAD))
+globals_var: GlobalVar
+
+Task = ThreadPoolExecutor(max_workers=int(globals_var.THREAD))
 
 
 class MyDialog(QDialog):
@@ -46,7 +49,7 @@ class MyDialog(QDialog):
         ''')
 
 
-def set_id (sql_id):
+def set_id(sql_id):
     return sql_id
 
 
@@ -54,7 +57,7 @@ class PyDownloadWidget(QWidget):
     set_value = Signal(int)
     download_widget_status = Signal(list)
 
-    def __init__ (self, ui, result, formats, sql_id, file_system_watcher, directories, i, parent = None):
+    def __init__(self, ui, result, formats, sql_id, file_system_watcher, directories, i, parent=None):
         self.ui = ui
         self.init_down = 0
         self.download_stat = 0
@@ -84,8 +87,9 @@ class PyDownloadWidget(QWidget):
         if self.formats.get('file_path_name'):
             self.file_path_name = self.formats.get('file_path_name')
         else:
-            self.file_path_name = globals_var.DOWNDIRECTORY.replace('\\', '\\\\') + f'\\\\{self.file_name}.{self.file_type}'
-        self.file_path_info_json = globals_var.DOWNDIRECTORY + f'\\{self.file_name}.info.json'
+            self.file_path_name = globals_var.DOWNLOAD_DIRECTORY.replace('\\',
+                                                                    '\\\\') + f'\\\\{self.file_name}.{self.file_type}'
+        self.file_path_info_json = globals_var.DOWNLOAD_DIRECTORY + f'\\{self.file_name}.info.json'
         path = self.file_path_name.split('\\')[:-1]
         add_path = '\\'.join(path)
         if add_path in self.directories:
@@ -102,12 +106,12 @@ class PyDownloadWidget(QWidget):
 
         # LOAD COVE
         self.load_progress_bar = PyCircularProgress(
-                value = self.values,
-                progress_width = 4,
-                progress_color = "#568af2",
-                text_color = "#568af2",
-                font_size = 14,
-                bg_color = "#3c4454",
+            value=self.values,
+            progress_width=4,
+            progress_color="#568af2",
+            text_color="#568af2",
+            font_size=14,
+            bg_color="#3c4454",
         )
         self.load_progress_bar.setFixedSize(50, 50)
 
@@ -191,7 +195,7 @@ class PyDownloadWidget(QWidget):
             self.load_button.addWidget(self.load_resume)
             self.directory_changed()
 
-    def directory_changed (self):
+    def directory_changed(self):
         if self.init_down:
             if not os.path.exists(self.file_path_name):
                 logger.info(self.pause_status)
@@ -229,7 +233,7 @@ class PyDownloadWidget(QWidget):
             self.download_widget_status.emit([self.index, self.format_id, '-1'])
         self.message.close()
 
-    def pause_status_action (self):
+    def pause_status_action(self):
         """
         pause status
         history download ： 根据百分比配置数据
@@ -254,7 +258,7 @@ class PyDownloadWidget(QWidget):
             #         pass
             #     else:
 
-    def resume_status_action (self):
+    def resume_status_action(self):
         if self.values != 100 and self.values < 100:
             if not self.resume_status:
                 self.init_down = 0
@@ -270,7 +274,7 @@ class PyDownloadWidget(QWidget):
                 if self.index:
                     self.download_widget_status.emit([self.index, self.format_id, 'RESUME-DOWNLOAD'])
 
-    def finished_status (self):
+    def finished_status(self):
         """
         finished download
         :return:
@@ -294,19 +298,19 @@ class PyDownloadWidget(QWidget):
             self.load_button.addWidget(self.load_resume)
             # self.load_button.addWidget(self.load_open_folder)
 
-    def open_folder (self):
+    def open_folder(self):
         if os.path.exists(self.file_path_name):
             file = os.path.realpath(self.file_path_name)
             os.system(f'explorer /select, {file}')
         else:
-            os.startfile(globals_var.DOWNDIRECTORY)
+            os.startfile(globals_var.DOWNLOAD_DIRECTORY)
 
-    def update_progress (self, value):
+    def update_progress(self, value):
         query_all = {'id': self.id}
         update_all = {'down_percentage': value, 'down_file_size': self.down_file_size}
         update_single_line_record(query_all, update_all)
 
-    def update_download_data (self):
+    def update_download_data(self):
         query_all = {'id': self.id}
         if self.formats.get('url'):
             update_all = {'down_url': self.formats.get('url'), 'down_file_size': 0, 'size': self.size,
@@ -330,7 +334,7 @@ class PyDownloadWidget(QWidget):
     #     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
     #         ydl.download([self.formats['url']])
 
-    def download_data (self):
+    def download_data(self):
         self.init_down = 0
         self.file_not_exists.setText('')
         # _proxies = {"https": "http://127.0.0.1:1087", "http": "http://127.0.0.1:1087"}
@@ -347,9 +351,9 @@ class PyDownloadWidget(QWidget):
         url = self.formats.get('down_url') if self.formats.get('down_url') else self.formats.get('url')
         # logger.info(f'{self.down_file_size}, {self.size}, {url}')
 
-        resp = requests.get(url, headers = _headers, proxies = _proxies, stream = True, timeout=15)
+        resp = requests.get(url, headers=_headers, proxies=_proxies, stream=True, timeout=15)
         if 400 <= resp.status_code:
-            message = PyMessageBox(text = "DOWNLOAD TASK")
+            message = PyMessageBox(text="DOWNLOAD TASK")
             message.setWindowTitle("DELETE FILES")
             message.setText("Download link invalid\nPlease download again!!!")
             message.exec()
@@ -371,7 +375,7 @@ class PyDownloadWidget(QWidget):
                 value = int(self.down_file_size / self.size * 100)
                 self.set_value.emit(value)
 
-    def set_value_num (self, bar):
+    def set_value_num(self, bar):
         if not self.download_stat:
             self.download_stat = 1
         if self.resume_status:
@@ -402,20 +406,20 @@ class PyDownloadWidget(QWidget):
             if self.index:
                 self.download_widget_status.emit([self.index, self.format_id, 'FINISHED'])
             # if os.path.exists(self.file_path_name):
-                # self.load_button.addWidget(self.load_open_folder)
+            # self.load_button.addWidget(self.load_open_folder)
 
 
 class PyDownloadPage(QWidget):
     download_page_status_ = Signal(list)
 
-    def __init__ (self, ui, parent = None):
+    def __init__(self, ui, parent=None):
         self.ui = ui
         self.values = 1
         self.is_downloading = 1
         self.list_item = []
         super(PyDownloadPage, self).__init__(parent)
         self.file_system_watcher = QFileSystemWatcher()
-        self.directories = [globals_var.DOWNDIRECTORY]
+        self.directories = [globals_var.DOWNLOAD_DIRECTORY]
         self.file_system_watcher.addPaths(self.directories)
         self.download_page_all = QVBoxLayout()
         self.download_list = PyListWidget()
@@ -424,7 +428,7 @@ class PyDownloadPage(QWidget):
         self.setLayout(self.download_page_all)
         self.check_sql()
 
-    def check_sql (self):
+    def check_sql(self):
         results = select_record(False)
         if results:
             for result in results:
@@ -446,7 +450,7 @@ class PyDownloadPage(QWidget):
                 download_widget_item.setSizeHint(download_widget.sizeHint())
                 self.download_list.insertItem(0, download_widget_item)
                 self.download_list.setSortingEnabled(True)
-                self.download_list.sortItems(order = Qt.AscendingOrder)
+                self.download_list.sortItems(order=Qt.AscendingOrder)
                 self.download_list.setItemWidget(download_widget_item, download_widget)
 
                 # download_widget.load_progress_bar.value = 100
@@ -456,7 +460,7 @@ class PyDownloadPage(QWidget):
                 download_widget.load_delete.clicked.connect(lambda: self.remove_list_item(self.download_list))
                 self.list_item.insert(0, [download_widget, download_widget_item, sqlid])
 
-    def add_download_item (self, result, download_num, formats, sql_id):
+    def add_download_item(self, result, download_num, formats, sql_id):
         for i in download_num:
             download_widget = PyDownloadWidget(self.ui, result, formats[i], sql_id[0], self.file_system_watcher,
                                                self.directories, i)
@@ -467,7 +471,7 @@ class PyDownloadPage(QWidget):
             download_widget_item.setSizeHint(download_widget.sizeHint())
             self.download_list.insertItem(0, download_widget_item)
             self.download_list.setSortingEnabled(True)
-            self.download_list.sortItems(order = Qt.AscendingOrder)
+            self.download_list.sortItems(order=Qt.AscendingOrder)
             self.download_list.setItemWidget(download_widget_item, download_widget)
             # 这个任务核心上是异步且是 非阻塞的操作
             Task.submit(download_widget.download_data)
@@ -476,7 +480,7 @@ class PyDownloadPage(QWidget):
             self.list_item.insert(0, [download_widget, download_widget_item, sqlid])
             download_widget.load_delete.clicked.connect(lambda: self.remove_list_item(self.download_list, ))
 
-    def remove_list_item (self, download_list):
+    def remove_list_item(self, download_list):
         item_index = ''
         list_item_index = ''
         logger.info(self.list_item)
@@ -489,5 +493,5 @@ class PyDownloadPage(QWidget):
         download_list.takeItem(item_index)
         del self.list_item[list_item_index]
 
-    def download_page_status_id (self, download_status_id):
+    def download_page_status_id(self, download_status_id):
         self.download_page_status_.emit(download_status_id)

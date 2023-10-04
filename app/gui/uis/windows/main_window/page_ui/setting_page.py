@@ -17,7 +17,7 @@ class PySettingsPage(QWidget):
         self.threads = ["1", "2", "4"]
         self.themes = ["default", "bright_theme", "dracula"]
         self.language = ["English"]
-        self.setting_down_path = globals_var.DOWNDIRECTORY
+        self.setting_down_path = globals_var.DOWNLOAD_DIRECTORY
         self.setting_thread = globals_var.THREAD
         self.setting_language = globals_var.LANGUAGE
         self.setting_theme = globals_var.THEME
@@ -141,12 +141,6 @@ class PySettingsPage(QWidget):
             save setting all config
             :return:
             '''
-            # current_language = self.setting_page_select_language.currentText()
-            # current_directory = self.setting_page_display_directory.text()
-            # current_thread = self.setting_page_thread_select.currentText()
-            # current_theme = self.setting_page_select_themes.currentText()
-
-            # current_proxy = self.setting_page_proxy_input.text()
             self.setting_language = self.setting_page_select_language.currentText()
             self.setting_down_path = self.setting_page_display_directory.text()
             self.setting_thread = self.setting_page_thread_select.currentText()
@@ -158,14 +152,14 @@ class PySettingsPage(QWidget):
             if self.setting_theme != globals_var.THEME:
                 is_reboot = True
             globals_var.LANGUAGE = self.setting_language
-            globals_var.update_DOWNDIRECTORY(self.setting_down_path)
-            globals_var.update_THREAD(self.setting_thread)
-            globals_var.update_THEME(self.setting_theme)
+            globals_var.update_download_directory(self.setting_down_path)
+            globals_var.update_threads(self.setting_thread)
+            globals_var.update_themes(self.setting_theme)
             if http_proxy:
-                globals_var.update_PROXY(self.setting_proxys)
+                globals_var.update_proxy(self.setting_proxys)
                 globals_var.PROXY = http_proxy
             else:
-                globals_var.update_PROXY('None')
+                globals_var.update_proxy('None')
                 globals_var.PROXY = 'None'
             if is_reboot:
                 result = select_record({'download_status': 1})

@@ -10,8 +10,8 @@
     720
   ],
   "minimum_size": [
-    960,
-    540
+    1600,
+    900
   ],
   "lef_menu_size": {
     "minimum": 50,
@@ -28,8 +28,8 @@
   },
   "time_animation": 500,
   "font": {
-    "family": "Segoe UI",
-    "title_size": 14,
-    "text_size": 10
+    "family": "Aayuthaya,Segoe UI",
+    "title_size": 18,
+    "text_size": 14
   }
 }

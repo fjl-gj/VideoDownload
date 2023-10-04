@@ -32,28 +32,12 @@ def data_parems(result, proxies):
     link_message['webpage_url'] = result.get('webpage_url')
     cove = deepcopy(link_message['cove'])
     if cove:
-        # _proxies = {}
-        # _proxies = result_proxy(globals_var.PROXY)
         logger.info(cove)
-        # if globals_var.PROXY == 'None':
-        #     _proxies = {"https": None, "http": None}
-        # else:
-        #     for proxy in globals_var.PROXY:
-        #         _proxies[proxy] = f'http://{globals_var.PROXY.get(proxy)}'
-        #     print('2', globals_var.PROXY)
         cove_type = cove.split("?")[0].split(".")[-1]
         covr_path = f"{path}\\resource\\cove.{cove_type}"
         logger.info(f'{cove_type}, {covr_path}')
         resp = requests.get(cove, headers=_headers, proxies=proxies, timeout=15)
-        # resp = requests.get(cove, headers=_headers, timeout=15)
-        # cove_type = "png"
         logger.info("准备写入")
-        # youtube_option = {
-        #     'outtmpl': covr_path,
-        #     # 'proxy': 'https://127.0.0.1:1087'
-        # }
-        # with YoutubeDL(youtube_option) as youtube:
-        #     youtube.download([cove])
         with open(covr_path, 'wb') as f:
             f.write(resp.content)
         link_message['cove'] = covr_path

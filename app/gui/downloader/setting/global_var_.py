@@ -1,24 +1,24 @@
 import os
 import threading
+
+from app.common.constantx import GLOBAL_VAR_FILE_PATH, FILE_DOWNLOAD_PATH
 from app.gui.downloader.utils import check_proxy
 from configobj import ConfigObj
 
-__all__ = ["globals_var"]
+__all__ = ["globals_var", "GlobalVar"]
 
 
 class GlobalVar:
-
+    """全局配置后续放置在数据库中"""
     _instance_lock = threading.Lock()
 
     def __init__(self, file_ini='global_var.ini'):
         self.BASE_DIR = os.path.abspath(os.getcwd())
         self.path = os.path.join(os.path.join(self.BASE_DIR, 'conf'), file_ini)
         self.config = ConfigObj(self.path, encoding='UTF8')
-        if self.config['globalvars']['DOWNDIRECTORY']:
-            self.DOWNDIRECTORY = self.config['globalvars']['DOWNDIRECTORY']
-        else:
-            self.config['globalvars']['DOWNDIRECTORY'] = os.path.join(os.path.join(self.BASE_DIR, 'static'), 'resource')
-            self.DOWNDIRECTORY = f"{os.path.dirname(self.path)}\\resource"
+        if not self.config['globalvars']['DOWNLOAD_DIRECTORY']:
+            self.config['globalvars']['DOWNLOAD_DIRECTORY'] = FILE_DOWNLOAD_PATH
+        self.DOWNLOAD_DIRECTORY = self.config['globalvars']['DOWNLOAD_DIRECTORY']
         self.THREAD = self.config['globalvars']['THREAD']
         self.LANGUAGE = self.config['globalvars']['LANGUAGE']
         self.THEME = self.config['globalvars']['THEME']
@@ -27,7 +27,7 @@ class GlobalVar:
         self.setting_proxy_http = self.config['globalvars']['PROXY']
         self.PROXY = check_proxy(self.setting_proxy_http)
         if not self.PROXY:
-            self.PROXY = 'None'
+            self.PROXY = ""
 
     def __new__(cls, *args, **kwargs):
         if not hasattr(GlobalVar, "_instance"):
@@ -36,32 +36,34 @@ class GlobalVar:
                     GlobalVar._instance = object.__new__(cls)
         return GlobalVar._instance
 
-    def update_DOWNDIRECTORY(self, files_torage):
-        self.config['globalvars']['DOWNDIRECTORY'] = files_torage
+    def update_download_directory(self, files_storage):
+        self.config['globalvars']['DOWNLOAD_DIRECTORY'] = files_storage
         self.config.write()
-        self.DOWNDIRECTORY = files_torage
+        self.DOWNLOAD_DIRECTORY = files_storage
 
-    def update_THREAD(self, thread):
+    def update_threads(self, thread):
         self.config['globalvars']['THREAD'] = thread
         self.config.write()
         self.THREAD = thread
 
-    def update_LANGUAGE(self, language):
+    def update_languages(self, language):
         self.config['globalvars']['LANGUAGE'] = language
         self.config.write()
         self.LANGUAGE = language
 
-    def update_THEME(self, theme):
+    def update_themes(self, theme):
         self.config['globalvars']['THEME'] = theme
         self.config.write()
         self.LANGUAGE = theme
 
-    def update_STATIC(self, path):
-        self.config['globalvars']['LANGUAGE'] = path
-        self.config.write()
-        self.STATIC = path
+    def update_static(self, path):
+        pass
+        # self.config['globalvars']['LANGUAGE'] = path
+        # self.config.write()
+        # self.STATIC = path
 
-    def update_PROXY(self, proxy):
+    def update_proxy(self, proxy):
+        check_proxy(proxy)
         self.config['globalvars']['PROXY'] = proxy
         self.config.write()
 
