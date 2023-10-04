@@ -35,7 +35,7 @@ class MainFunctions():
         # SETUP MAIN WINDOw
         # Load widgets from "gui\uis\main_window\ui_main.py"
         # ///////////////////////////////////////////////////////////////
-        self.ui = UI_MainWindow()
+        self.ui = UiMainWindow()
         self.ui.setup_ui(self)
 
     # SET MAIN WINDOW PAGES

@@ -1,5 +1,7 @@
 import sqlite3
 from functools import wraps
+
+from app.common.constantx import SQL_LITE_DB_PATH, DB_TABLE
 from app.gui.downloader.log.log import logger
 
 from app.gui.downloader.setting.global_var_ import globals_var
@@ -65,13 +67,11 @@ class SqlLite:
     """initialized database"""
 
     def __init__(self):
-        self.db_file = f'{globals_var.BASE_DIR}\\static\\{globals_var.FILENAME}.db'
+        self.db_file = SQL_LITE_DB_PATH
         is_create_table = self.check_table()
         if not is_create_table:
             self.create_table()
-            logger.info("初始化成功")
-        else:
-            logger.info("已完成初始化")
+            logger.info("DB初始化成功")
 
     def init_close_database(func):
         def wrapper(self, *args, **kwargs):
@@ -86,7 +86,7 @@ class SqlLite:
 
     @init_close_database
     def check_table(self):
-        result = self.cur.execute(f'''PRAGMA table_info({globals_var.TABLE});''')
+        result = self.cur.execute(f'''PRAGMA table_info({DB_TABLE});''')
         return True if result.fetchone() else False
 
     @init_close_database
@@ -95,10 +95,10 @@ class SqlLite:
         PRAGMA foreign_keys = false;
         
         -- ----------------------------
-        -- Table structure for video_download
+        -- Table structure for {DB_TABLE}
         -- ----------------------------
-        DROP TABLE IF EXISTS {globals_var.TABLE};
-        CREATE TABLE {globals_var.TABLE} (
+        DROP TABLE IF EXISTS {DB_TABLE};
+        CREATE TABLE {DB_TABLE} (
           "id" integer NOT NULL ON CONFLICT IGNORE COLLATE NOCASE,
           "title" TEXT NOT NULL,
           "uploader" TEXT NOT NULL,
@@ -123,14 +123,14 @@ class SqlLite:
         );
         
         -- ----------------------------
-        -- Indexes structure for table video_download
+        -- Indexes structure for table {DB_TABLE}
         -- ----------------------------
-        CREATE INDEX "video_download_format_id"
-        ON "video_download" (
+        CREATE INDEX "{DB_TABLE}_format_id"
+        ON "{DB_TABLE}" (
           "format_id" ASC
         );
-        CREATE INDEX "video_download_url_id"
-        ON "video_download" (
+        CREATE INDEX "{DB_TABLE}_url_id"
+        ON "{DB_TABLE}" (
           "url_id" ASC
         );
         

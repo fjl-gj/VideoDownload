@@ -1,5 +1,5 @@
+from app.common.constantx import DB_TABLE
 from app.gui.downloader.setting.database_action.basics_execute import basics_execute, init_close_sqlite
-from app.gui.downloader.setting.global_var_ import globals_var
 
 
 @init_close_sqlite
@@ -10,7 +10,7 @@ def delete_single_line_record(cur, builder):
     :param builder: delete query where builder
     :return: delete id
     """
-    sql = f'''DELETE FROM {globals_var.TABLE} WHERE id={builder.get('id')};'''
+    sql = f'''DELETE FROM {DB_TABLE} WHERE id={builder.get('id')};'''
     result = cur.execute(sql).fetchall()
     return result
 
@@ -21,6 +21,6 @@ def delete_single_line_record_alter_download_status(builder):
     :param builder: delete query where builder
     :return: delete id
     """
-    sql = f'''UPDATE {globals_var.TABLE} SET is_delete=0  WHERE id={builder.get('id')};'''
+    sql = f'''UPDATE {DB_TABLE} SET is_delete=0  WHERE id={builder.get('id')};'''
     basics_execute(sql, True)
     return True

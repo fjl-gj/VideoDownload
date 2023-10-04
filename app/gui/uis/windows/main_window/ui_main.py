@@ -49,16 +49,7 @@ from app.gui.widgets import PyCredits
 
 # PY WINDOW
 # ///////////////////////////////////////////////////////////////
-class UI_MainWindow(object):
-    # def __init__(self):
-    #     self.left_menu_layout = None
-    #     self.left_menu_frame = None
-    #     self.window = None
-    #     self.central_widget_layout = None
-    #     self.central_widget = None
-    #     self.lite = None
-    #     self.themes = None
-    #     self.settings = None
+class UiMainWindow(object):
 
     def setup_ui(self, parent):
         if not parent.objectName():
@@ -74,6 +65,7 @@ class UI_MainWindow(object):
         themes = Themes()
         self.themes = themes.items
 
+        # LOAD sqlite
         self.lite = lite
 
         logger.info("初始化 MainWindow")

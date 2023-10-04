@@ -13,17 +13,17 @@ class GlobalVar:
     _instance_lock = threading.Lock()
 
     def __init__(self, file_ini='global_var.ini'):
-        self.BASE_DIR = os.path.abspath(os.getcwd())
-        self.path = os.path.join(os.path.join(self.BASE_DIR, 'conf'), file_ini)
-        self.config = ConfigObj(self.path, encoding='UTF8')
+        # self.BASE_DIR = os.path.abspath(os.getcwd())
+        # self.path = os.path.join(os.path.join(self.BASE_DIR, 'conf'), file_ini)
+        self.config = ConfigObj(GLOBAL_VAR_FILE_PATH, encoding='UTF8')
         if not self.config['globalvars']['DOWNLOAD_DIRECTORY']:
             self.config['globalvars']['DOWNLOAD_DIRECTORY'] = FILE_DOWNLOAD_PATH
         self.DOWNLOAD_DIRECTORY = self.config['globalvars']['DOWNLOAD_DIRECTORY']
         self.THREAD = self.config['globalvars']['THREAD']
         self.LANGUAGE = self.config['globalvars']['LANGUAGE']
         self.THEME = self.config['globalvars']['THEME']
-        self.FILENAME = self.config['globalvars']['FILENAME']
-        self.TABLE = self.config['globalvars']['TABLE']
+        # self.FILENAME = self.config['globalvars']['FILENAME']
+        # self.TABLE = self.config['globalvars']['TABLE']
         self.setting_proxy_http = self.config['globalvars']['PROXY']
         self.PROXY = check_proxy(self.setting_proxy_http)
         if not self.PROXY:

@@ -1,5 +1,5 @@
-from app.gui.downloader.setting.database_action.basics_execute import basics_execute, init_close_sqlite
-from app.gui.downloader.setting.global_var_ import globals_var
+from app.common.constantx import DB_TABLE
+from app.gui.downloader.setting.database_action.basics_execute import init_close_sqlite
 
 
 @init_close_sqlite
@@ -11,7 +11,7 @@ def select_record(cur, builder):
     :return: select all record
     """
     query_all = ''
-    sql = f'''SELECT * FROM {globals_var.TABLE};'''
+    sql = f'''SELECT * FROM {DB_TABLE};'''
     if builder:
         for number, query in enumerate(builder):
             if number == 0 and number == len(builder) - 1:
@@ -33,7 +33,7 @@ def select_record(cur, builder):
             if type(builder[query][0]) == int:
                 query_all += f" {query}={builder[query][0]} {builder[query][1]} "
 
-        sql = f'''SELECT * FROM {globals_var.TABLE} WHERE {query_all};'''
+        sql = f'''SELECT * FROM {DB_TABLE} WHERE {query_all};'''
     result = cur.execute(sql).fetchall()
     # result = basics_execute(sql, True)
 

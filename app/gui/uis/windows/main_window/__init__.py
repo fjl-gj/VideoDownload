@@ -19,4 +19,4 @@
 from .setup_main_window import SetupMainWindow
 # MAIN WINDOW
 # ///////////////////////////////////////////////////////////////
-from .ui_main import UI_MainWindow
+from .ui_main import UiMainWindow

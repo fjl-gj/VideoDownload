@@ -1,7 +1,7 @@
 from datetime import datetime
 
+from app.common.constantx import DB_TABLE
 from app.gui.downloader.setting.database_action.basics_execute import init_close_sqlite
-from app.gui.downloader.setting.global_var_ import globals_var
 
 
 @init_close_sqlite
@@ -19,7 +19,7 @@ def insert_single_line(cur, data):
     create_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     update_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    sql = f'''INSERT INTO {globals_var.TABLE} 
+    sql = f'''INSERT INTO {DB_TABLE} 
              (title, uploader, duration, quality, file_type, file_size, download_status, is_delete, create_time, 
               update_time, format_id, url_id, webpage_url) 
               VALUES 

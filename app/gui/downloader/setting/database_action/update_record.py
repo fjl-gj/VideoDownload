@@ -1,5 +1,5 @@
+from app.common.constantx import DB_TABLE
 from app.gui.downloader.setting.database_action.basics_execute import basics_execute
-from app.gui.downloader.setting.global_var_ import globals_var
 
 
 def update_single_line_record(builder, update_data):
@@ -27,7 +27,7 @@ def update_single_line_record(builder, update_data):
             break
         update_all += f'  {update}={update_data[update]}, ' if type(update_data[update]) == int else f'  {update}="{update_data[update]}", '
 
-    sql = f'''UPDATE {globals_var.TABLE} SET {update_all}  WHERE {query_all};'''
+    sql = f'''UPDATE {DB_TABLE} SET {update_all}  WHERE {query_all};'''
 
     basics_execute(sql, True)
 

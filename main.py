@@ -22,7 +22,7 @@ from PySide6.QtWidgets import QMainWindow, QApplication
 
 from app.gui.core.json_settings import Settings
 from app.gui.downloader.log.log import logger
-from app.gui.uis.windows.main_window import UI_MainWindow, SetupMainWindow
+from app.gui.uis.windows.main_window import UiMainWindow, SetupMainWindow
 from app.gui.uis.windows.main_window.functions_main_window import MainFunctions
 
 # IMPORT QT CORE
@@ -55,14 +55,14 @@ class MainWindow(QMainWindow):
         # SETUP MAIN WINDOw
         # Load widgets from "gui\uis\main_window\ui_main.py"
         # ///////////////////////////////////////////////////////////////
-        self.ui = UI_MainWindow()
+        self.ui = UiMainWindow()
         self.ui.setup_ui(self)
-
+        logger.info("setup ui")
         # LOAD SETTINGS
         # ///////////////////////////////////////////////////////////////
         settings = Settings()
         self.settings = settings.items
-
+        logger.info("load setting")
         # SETUP MAIN WINDOW
         # ///////////////////////////////////////////////////////////////
         self.hide_grips = True  # Show/Hide resize grips
@@ -147,14 +147,6 @@ class MainWindow(QMainWindow):
 # if __name__ == "__main__":
 # APPLICATION
 # ///////////////////////////////////////////////////////////////
-
-# BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-#
-# sys.path.append(os.path.join(BASE_DIR, 'gui'))
-# sys.path.append(os.path.join(BASE_DIR, 'gui'))
-# sys.path.append(os.path.join(BASE_DIR, 'gui'))
-# sys.path.append(os.path.join(BASE_DIR, 'gui'))
-
 app = QApplication(sys.argv)
 app.setWindowIcon(QIcon("icon.ico"))
 window = MainWindow()

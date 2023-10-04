@@ -69,7 +69,7 @@ from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QMainWindow, QApplication
 
 from app.gui.core.json_settings import Settings
-from app.gui.uis.windows.main_window import UI_MainWindow, SetupMainWindow
+from app.gui.uis.windows.main_window import UiMainWindow, SetupMainWindow
 from app.gui.uis.windows.main_window import MainFunctions
 
 

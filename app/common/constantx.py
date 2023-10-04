@@ -27,3 +27,10 @@ STATIC_PATH = os.path.join(BASE_DIR, "static")
 LOG_PATH = os.path.join(BASE_DIR, "log")
 LOG_FILE_NAME = "video_download.log"
 LOG_FILE_PATH = os.path.join(LOG_PATH, LOG_FILE_NAME)
+
+
+# DB file
+DB_TABLE = "video_history"
+MODEL_DB_PATH = os.path.join(BASE_DIR, "model")
+DB_FILE_NAME = "VideoDownload.db"
+SQL_LITE_DB_PATH = os.path.join(MODEL_DB_PATH, DB_FILE_NAME)

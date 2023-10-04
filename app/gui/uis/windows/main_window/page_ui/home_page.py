@@ -278,7 +278,7 @@ class PyLinkParse(QWidget):
 
 
 class PyHomePage(QWidget):
-    '''定义一种信号，因为有文本框和进度条两个类，此处要一个参数，类型是：dict '''
+    """定义一种信号，因为有文本框和进度条两个类，此处要一个参数，类型是：dict """
     child_si = Signal(dict)
 
     def __init__(self, ui, parent=None):
@@ -291,12 +291,6 @@ class PyHomePage(QWidget):
         self.home_link_input = PyLineEdit(place_holder_text="input link",)
 
         self.home_link_button = PyPushButton('Download', 8, "#9EA5AF", "#4A5A71", "#4A5A71", "#037aff")
-        # self.home_link_button = PyIconButton(
-        #     icon_path=Functions.set_svg_icon("icon_analysis_link.svg"),
-        #     parent=self,
-        #     app_parent=self.ui.central_widget,
-        #     tooltip_text="download",
-        # )
         max_h_w(self.home_link_input, 48, 700)
         max_h_w(self.home_link_button, 48, 180)
         min_h_w(self.home_link_input, 48, 680)
@@ -310,7 +304,7 @@ class PyHomePage(QWidget):
         self.homeQHBoxLayout.addLayout(self.home_row_1, 0)
         self.homeQHBoxLayout.setSpacing(24)
         self.homeQHBoxLayout.addLayout(self.home_row_2, 0)
-        logger.info('loading home page init')
+        logger.info('Home page init')
         self.setLayout(self.homeQHBoxLayout)
 
     def add_video_table(self, widget):
