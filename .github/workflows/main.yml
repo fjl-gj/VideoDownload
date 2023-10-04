@@ -1,4 +1,4 @@
-name: Python Deploy
+name: VideoDownload
 
 on:
   push:
@@ -7,9 +7,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: self-hosted
-    container:
-      image: centos:7
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout Repository

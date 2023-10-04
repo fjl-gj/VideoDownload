@@ -1,6 +1,4 @@
-# VideoDown Project
-
-详情查看个人网站:https://fjlgj.top/index.php/2021/11/26/python_project_nuitka_inno_setup/
+# VideoDown Project （OLD）
 
 如果按照往常开发中的环境项目结构，加上需要的依赖，一套运行环境下来大概在`400MB`左右
 
