@@ -19,3 +19,11 @@ GLOBAL_VAR_FILE_PATH = os.path.join(CONF_PATH, GLOBAL_VAR_FILE_NAME)
 
 # resource download path
 FILE_DOWNLOAD_PATH = os.path.join(BASE_DIR, "resources")
+
+# static resource
+STATIC_PATH = os.path.join(BASE_DIR, "static")
+
+# log
+LOG_PATH = os.path.join(BASE_DIR, "log")
+LOG_FILE_NAME = "video_download.log"
+LOG_FILE_PATH = os.path.join(LOG_PATH, LOG_FILE_NAME)
