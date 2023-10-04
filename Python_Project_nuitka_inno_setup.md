@@ -70,9 +70,10 @@ import sys
 from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QMainWindow, QApplication
 
-from gui.core.json_settings import Settings
-from gui.uis.windows.main_window import UI_MainWindow, SetupMainWindow
-from gui.uis.windows.main_window.functions_main_window import MainFunctions
+from app.gui.core.json_settings import Settings
+from app.gui.uis.windows.main_window import UI_MainWindow, SetupMainWindow
+from app.gui.uis.windows.main_window import MainFunctions
+
 
 # MAIN WINDOW
 # ///////////////////////////////////////////////////////////////
@@ -81,7 +82,9 @@ class MainWindow(QMainWindow):
         super().__init__()
         ...
         ...
+
     ......
+
 
 app = QApplication(sys.argv)
 app.setWindowIcon(QIcon("icon.ico"))

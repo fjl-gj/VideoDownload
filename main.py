@@ -20,10 +20,10 @@ import sys
 from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QMainWindow, QApplication
 
-from gui.core.json_settings import Settings
-from gui.downloader.log.log import logger
-from gui.uis.windows.main_window import UI_MainWindow, SetupMainWindow
-from gui.uis.windows.main_window.functions_main_window import MainFunctions
+from app.gui.core.json_settings import Settings
+from app.gui.downloader.log.log import logger
+from app.gui.uis.windows.main_window import UI_MainWindow, SetupMainWindow
+from app.gui.uis.windows.main_window.functions_main_window import MainFunctions
 
 # IMPORT QT CORE
 # ///////////////////////////////////////////////////////////////
@@ -49,7 +49,7 @@ os.environ["QT_FONT_DPI"] = "96"
 # MAIN WINDOW
 # ///////////////////////////////////////////////////////////////
 class MainWindow(QMainWindow):
-    def __init__ (self):
+    def __init__(self):
         super().__init__()
 
         # SETUP MAIN WINDOw
@@ -76,7 +76,7 @@ class MainWindow(QMainWindow):
     # Run function when btn is clicked
     # Check funtion by object name / btn_id
     # ///////////////////////////////////////////////////////////////
-    def btn_clicked (self):
+    def btn_clicked(self):
         # GET BT CLICKED
         btn = SetupMainWindow.setup_btns(self)
 
@@ -121,7 +121,7 @@ class MainWindow(QMainWindow):
     # Run function when btn is released
     # Check funtion by object name / btn_id
     # ///////////////////////////////////////////////////////////////
-    def btn_released (self):
+    def btn_released(self):
         # GET BT CLICKED
         btn = SetupMainWindow.setup_btns(self)
 
@@ -130,12 +130,12 @@ class MainWindow(QMainWindow):
 
     # RESIZE EVENT
     # ///////////////////////////////////////////////////////////////
-    def resizeEvent (self, event):
+    def resizeEvent(self, event):
         SetupMainWindow.resize_grips(self)
 
     # MOUSE CLICK EVENTS
     # ///////////////////////////////////////////////////////////////
-    def mousePressEvent (self, event):
+    def mousePressEvent(self, event):
         # SET DRAG POS WINDOW
         # self.dragPos = event.globalPos()
         self.dragPos = event.globalPosition().toPoint()
