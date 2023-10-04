@@ -77,3 +77,11 @@ class Themes(object):
         with open(self.settings_path, "r", encoding='utf-8') as reader:
             settings = json.loads(reader.read())
             self.items = settings
+
+    @property
+    def app_color(self):
+        return self.items["app_color"]
+
+    @property
+    def app_font(self):
+        return self.items["font"]

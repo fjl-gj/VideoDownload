@@ -50,6 +50,16 @@ from app.gui.widgets import PyCredits
 # PY WINDOW
 # ///////////////////////////////////////////////////////////////
 class UI_MainWindow(object):
+    # def __init__(self):
+    #     self.left_menu_layout = None
+    #     self.left_menu_frame = None
+    #     self.window = None
+    #     self.central_widget_layout = None
+    #     self.central_widget = None
+    #     self.lite = None
+    #     self.themes = None
+    #     self.settings = None
+
     def setup_ui(self, parent):
         if not parent.objectName():
             parent.setObjectName("MainWindow")
@@ -78,8 +88,8 @@ class UI_MainWindow(object):
         # ///////////////////////////////////////////////////////////////
         self.central_widget = QWidget()
         self.central_widget.setStyleSheet(f'''
-            font:  {self.settings["font"]["text_size"]}pt "{self.settings["font"]["family"]}";
-            color: {self.themes["app_color"]["text_foreground"]};
+            font:  {settings.app_font["text_size"]}pt "{settings.app_font["family"]}";
+            color: {themes.app_color["text_foreground"]};
         ''')
 
         self.central_widget_layout = QVBoxLayout(self.central_widget)
@@ -93,9 +103,9 @@ class UI_MainWindow(object):
         # ///////////////////////////////////////////////////////////////
         self.window = PyWindow(
             parent,
-            bg_color=self.themes["app_color"]["bg_one"],
-            border_color=self.themes["app_color"]["bg_two"],
-            text_color=self.themes["app_color"]["text_foreground"]
+            bg_color=themes.app_color["bg_one"],
+            border_color=themes.app_color["bg_two"],
+            text_color=themes.app_color["text_foreground"]
         )
 
         # If disable custom title bar
@@ -130,7 +140,7 @@ class UI_MainWindow(object):
             parent=self.left_menu_frame,
             app_parent=self.central_widget,  # For tooltip parent
             text_active="#ffffff",
-            # text_active=self.themes["app_color"]["text_active"]
+            # text_active=themes.app_color["text_active"]
         )
         self.left_menu_layout.addWidget(self.left_menu)
 
@@ -170,21 +180,21 @@ class UI_MainWindow(object):
             logo_width=100,
             app_parent=self.central_widget,
             logo_image="logo_top_100x22.svg",
-            bg_color=self.themes["app_color"]["bg_two"],
-            div_color=self.themes["app_color"]["bg_three"],
-            btn_bg_color=self.themes["app_color"]["bg_two"],
-            btn_bg_color_hover=self.themes["app_color"]["bg_three"],
-            btn_bg_color_pressed=self.themes["app_color"]["bg_one"],
-            icon_color=self.themes["app_color"]["icon_color"],
-            icon_color_hover=self.themes["app_color"]["icon_hover"],
-            icon_color_pressed=self.themes["app_color"]["icon_pressed"],
-            icon_color_active=self.themes["app_color"]["icon_active"],
-            context_color=self.themes["app_color"]["context_color"],
-            dark_one=self.themes["app_color"]["dark_one"],
-            text_foreground=self.themes["app_color"]["text_foreground"],
+            bg_color=themes.app_color["bg_two"],
+            div_color=themes.app_color["bg_three"],
+            btn_bg_color=themes.app_color["bg_two"],
+            btn_bg_color_hover=themes.app_color["bg_three"],
+            btn_bg_color_pressed=themes.app_color["bg_one"],
+            icon_color=themes.app_color["icon_color"],
+            icon_color_hover=themes.app_color["icon_hover"],
+            icon_color_pressed=themes.app_color["icon_pressed"],
+            icon_color_active=themes.app_color["icon_active"],
+            context_color=themes.app_color["context_color"],
+            dark_one=themes.app_color["dark_one"],
+            text_foreground=themes.app_color["text_foreground"],
             radius=8,
-            font_family=self.settings["font"]["family"],
-            title_size=self.settings["font"]["title_size"],
+            font_family=settings.app_font["family"],
+            title_size=settings.app_font["title_size"],
             is_custom_title_bar=self.settings["custom_title_bar"]
         )
         self.title_bar_layout.addWidget(self.title_bar)
@@ -222,7 +232,7 @@ class UI_MainWindow(object):
         self.content_area_right_bg_frame.setStyleSheet(f'''
         #content_area_right_bg_frame {{
             border-radius: 8px;
-            background-color: {self.themes["app_color"]["bg_two"]};
+            background-color: {themes.app_color["bg_two"]};
         }}
         ''')
 
@@ -249,12 +259,12 @@ class UI_MainWindow(object):
 
         # ADD CUSTOM WIDGET CREDITS
         self.credits = PyCredits(
-            bg_two=self.themes["app_color"]["bg_two"],
+            bg_two=themes.app_color["bg_two"],
             copyright=self.settings["copyright"],
             version=self.settings["version"],
-            font_family=self.settings["font"]["family"],
-            text_size=self.settings["font"]["text_size"],
-            text_description_color=self.themes["app_color"]["text_description"]
+            font_family=settings.app_font["family"],
+            text_size=settings.app_font["text_size"],
+            text_description_color=themes.app_color["text_description"]
         )
 
         #  ADD TO LAYOUT
