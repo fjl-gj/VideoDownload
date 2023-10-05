@@ -1,7 +1,9 @@
 import os
-import urllib.request
 from copy import deepcopy
-from pip._vendor import requests
+
+import requests
+
+from app.common.constantx import FILE_DOWNLOAD_PATH
 from app.gui.downloader.log.log import logger
 from app.gui.downloader.utils import fomart_time
 from app.gui.downloader.setting.global_var_ import globals_var
@@ -10,8 +12,8 @@ from youtube_dl import YoutubeDL
 
 
 def data_parems(result, proxies):
-    path = os.path.join(os.path.abspath(os.getcwd()), 'static')
-    logger.info(path)
+    # path = os.path.join(os.path.abspath(os.getcwd()), 'static')
+    logger.info(FILE_DOWNLOAD_PATH)
     # _proxies = {"https": "http://127.0.0.1:1087", "http": "http://127.0.0.1:1087"}
     _headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
@@ -34,13 +36,13 @@ def data_parems(result, proxies):
     if cove:
         logger.info(cove)
         cove_type = cove.split("?")[0].split(".")[-1]
-        covr_path = f"{path}\\resource\\cove.{cove_type}"
-        logger.info(f'{cove_type}, {covr_path}')
+        cove_path = os.path.join(FILE_DOWNLOAD_PATH, f"cove.{cove_type}")
+        logger.info(f'{cove_type}, {cove_path}')
         resp = requests.get(cove, headers=_headers, proxies=proxies, timeout=15)
         logger.info("准备写入")
-        with open(covr_path, 'wb') as f:
+        with open(cove_path, 'wb') as f:
             f.write(resp.content)
-        link_message['cove'] = covr_path
+        link_message['cove'] = cove_path
     return link_message
 
 

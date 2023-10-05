@@ -18,9 +18,9 @@ GLOBAL_VAR_FILE_NAME = "global_var.ini"
 GLOBAL_VAR_FILE_PATH = os.path.join(CONF_PATH, GLOBAL_VAR_FILE_NAME)
 
 # resource download path
-FILE_DOWNLOAD_PATH = os.path.join(BASE_DIR, "resources")
+FILE_DOWNLOAD_PATH = os.path.join(BASE_DIR, "resource")
 
-# static resource
+# static
 STATIC_PATH = os.path.join(BASE_DIR, "static")
 
 # log
