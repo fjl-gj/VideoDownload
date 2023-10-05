@@ -21,20 +21,27 @@
 # PY CREDITS BAR AND VERSION
 # ///////////////////////////////////////////////////////////////
 from PySide6.QtCore import Qt
-from PySide6.QtWidgets import QWidget, QHBoxLayout, QFrame, QLabel, QSpacerItem, QSizePolicy
+from PySide6.QtWidgets import (
+    QWidget,
+    QHBoxLayout,
+    QFrame,
+    QLabel,
+    QSpacerItem,
+    QSizePolicy,
+)
 
 
 class PyCredits(QWidget):
     def __init__(
-            self,
-            copyright,
-            version,
-            bg_two,
-            font_family,
-            text_size,
-            text_description_color,
-            radius=8,
-            padding=10
+        self,
+        copyright,
+        version,
+        bg_two,
+        font_family,
+        text_size,
+        text_description_color,
+        radius=8,
+        padding=10,
     ):
         super().__init__()
 

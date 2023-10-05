@@ -22,31 +22,32 @@ from PySide6.QtWidgets import QTableWidget, QTableWidgetItem, QAbstractItemView
 
 # IMPORT STYLE
 # ///////////////////////////////////////////////////////////////
-from .style import *
-
+from app.gui.widgets.py_table_widget.style import style
 
 # PY PUSH BUTTON
 # ///////////////////////////////////////////////////////////////
+
+
 class PyTableWidget(QTableWidget):
     cellExited = Signal(int, int)
     itemExited = Signal(QTableWidgetItem)
 
     def __init__(
-            self,
-            radius=8,
-            color="#FFF",
-            # bg_color="#1B1E23",
-            bg_color="#2D333B",
-            selection_color="#22272E",
-            header_horizontal_color="#22262C",
-            header_vertical_color="#22262C",
-            bottom_line_color="#555",
-            grid_line_color="#555",
-            scroll_bar_bg_color="#FFF",
-            scroll_bar_btn_color="#333",
-            context_color="#00ABE8",
-            is_action=False,
-            # last_row='',
+        self,
+        radius=8,
+        color="#FFF",
+        # bg_color="#1B1E23",
+        bg_color="#2D333B",
+        selection_color="#22272E",
+        header_horizontal_color="#22262C",
+        header_vertical_color="#22262C",
+        bottom_line_color="#555",
+        grid_line_color="#555",
+        scroll_bar_bg_color="#FFF",
+        scroll_bar_btn_color="#333",
+        context_color="#00ABE8",
+        is_action=False,
+        # last_row='',
     ):
         super().__init__()
 
@@ -79,23 +80,23 @@ class PyTableWidget(QTableWidget):
             grid_line_color,
             scroll_bar_bg_color,
             scroll_bar_btn_color,
-            context_color
+            context_color,
         )
 
     # SET STYLESHEET
     def set_stylesheet(
-            self,
-            radius,
-            color,
-            bg_color,
-            header_horizontal_color,
-            header_vertical_color,
-            selection_color,
-            bottom_line_color,
-            grid_line_color,
-            scroll_bar_bg_color,
-            scroll_bar_btn_color,
-            context_color
+        self,
+        radius,
+        color,
+        bg_color,
+        header_horizontal_color,
+        header_vertical_color,
+        selection_color,
+        bottom_line_color,
+        grid_line_color,
+        scroll_bar_bg_color,
+        scroll_bar_btn_color,
+        context_color,
     ):
         # APPLY STYLESHEET
         style_format = style.format(
@@ -109,7 +110,7 @@ class PyTableWidget(QTableWidget):
             _grid_line_color=grid_line_color,
             _scroll_bar_bg_color=scroll_bar_bg_color,
             _scroll_bar_btn_color=scroll_bar_btn_color,
-            _context_color=context_color
+            _context_color=context_color,
         )
         self.setStyleSheet(style_format)
         return style_format
@@ -159,19 +160,6 @@ class PyTableWidget(QTableWidget):
 
     def handleItemEntered(self, item):
         pass
-        # for i in range(0, 4):
-        #     self.item(item.row(), i).setBackground(QColor("#262A31"))
-        # self.cellWidget(item.row(), 4).download_button.setStyleSheet("background-color:#037aff ;"
-        #                                              "border-color: none; padding-left: 10px;"
-        #                                              "padding-right: 0px; ; gridline-color: #555;"
-        #                                              "border-radius: 8px; border-bottom: 1px solid #555;")
 
     def handleItemExited(self, item):
         pass
-        # for i in range(0, 4):
-        #     self.item(item.row(), i).setBackground(QTableWidgetItem().background())
-        # self.cellWidget(item.row(), 4).download_button.setStyleSheet("background-color:#4a5a71; "
-        #                                              "border-color: none; padding-left: 10px;"
-        #                                              "padding-right: 0px; "
-        #                                              "gridline-color: #555; border-radius: 8px;"
-        #                                              "border-bottom: 1px solid #555;")

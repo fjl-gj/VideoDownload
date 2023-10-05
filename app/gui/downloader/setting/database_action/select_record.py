@@ -10,8 +10,8 @@ def select_record(cur, builder):
     :param builder: select query where builder
     :return: select all record
     """
-    query_all = ''
-    sql = f'''SELECT * FROM {DB_TABLE};'''
+    query_all = ""
+    sql = f"""SELECT * FROM {DB_TABLE};"""
     if builder:
         for number, query in enumerate(builder):
             if number == 0 and number == len(builder) - 1:
@@ -33,9 +33,8 @@ def select_record(cur, builder):
             if type(builder[query][0]) == int:
                 query_all += f" {query}={builder[query][0]} {builder[query][1]} "
 
-        sql = f'''SELECT * FROM {DB_TABLE} WHERE {query_all};'''
+        sql = f"""SELECT * FROM {DB_TABLE} WHERE {query_all};"""
     result = cur.execute(sql).fetchall()
     # result = basics_execute(sql, True)
 
     return result
-

@@ -26,11 +26,7 @@ from PySide6.QtWidgets import QWidget, QVBoxLayout, QLabel
 
 
 class PyIcon(QWidget):
-    def __init__(
-            self,
-            icon_path,
-            icon_color
-    ):
+    def __init__(self, icon_path, icon_color):
         super().__init__()
 
         # PROPERTIES

@@ -20,7 +20,7 @@ from PySide6.QtWidgets import QListWidget
 
 # STYLE
 # ///////////////////////////////////////////////////////////////
-style = '''
+style = """
 QListWidget {{
 	background-color: {_bg_color};
 	border-radius: {_radius}px;
@@ -29,19 +29,19 @@ QListWidget {{
 	
     color: {_color};
 }}
-'''
+"""
 
 
 # PY PUSH BUTTON
 # ///////////////////////////////////////////////////////////////
 class PyListWidget(QListWidget):
     def __init__(
-            self,
-            radius=8,
-            border_size=2,
-            color="#FFF",
-            bg_color="#333",
-            context_color="#00ABE8"
+        self,
+        radius=8,
+        border_size=2,
+        color="#FFF",
+        bg_color="#333",
+        context_color="#00ABE8",
     ):
         super().__init__()
 
@@ -55,12 +55,11 @@ class PyListWidget(QListWidget):
 
     # SET STYLESHEET
     def set_stylesheet(
-            self,
-            radius,
-            border_size,
-            color,
-            bg_color,
-
+        self,
+        radius,
+        border_size,
+        color,
+        bg_color,
     ):
         # APPLY STYLESHEET
         style_format = style.format(

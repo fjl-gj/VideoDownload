@@ -2,7 +2,7 @@ from PySide6.QtWidgets import QMessageBox
 
 # STYLE
 # ///////////////////////////////////////////////////////////////
-style = '''
+style = """
 QMessageBox {
     background-color: #F2F2F2; /* QMessageBox背景颜色 */
 }
@@ -43,7 +43,7 @@ QMessageBox QDialogButtonBox#qt_msgbox_buttonbox { /* buttonBox */
     button-layout: 0; /* 设置QPushButton布局好像没啥作用 */
 }
 
-'''
+"""
 
 # PY PUSH BUTTON
 # ///////////////////////////////////////////////////////////////
@@ -51,13 +51,13 @@ QMessageBox QDialogButtonBox#qt_msgbox_buttonbox { /* buttonBox */
 
 class PyMessageBox(QMessageBox):
     def __init__(
-            self,
-            text,
-            radius=8,
-            border_size=2,
-            color="#FFF",
-            bg_color="#333",
-            context_color="#00ABE8"
+        self,
+        text,
+        radius=8,
+        border_size=2,
+        color="#FFF",
+        bg_color="#333",
+        context_color="#00ABE8",
     ):
         super().__init__()
 
@@ -72,12 +72,11 @@ class PyMessageBox(QMessageBox):
 
     # SET STYLESHEET
     def set_stylesheet(
-            self,
-            radius,
-            border_size,
-            color,
-            bg_color,
-
+        self,
+        radius,
+        border_size,
+        color,
+        bg_color,
     ):
         # APPLY STYLESHEET
         # style_format = style.format(
@@ -88,4 +87,3 @@ class PyMessageBox(QMessageBox):
         # )
         # self.setStyleSheet(style_format)
         self.setStyleSheet(style)
-

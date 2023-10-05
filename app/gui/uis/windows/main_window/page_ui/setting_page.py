@@ -1,6 +1,3 @@
-import sys
-import os
-
 from PySide6.QtWidgets import QWidget, QHBoxLayout, QVBoxLayout, QFileDialog
 
 from app.gui.downloader.setting.database_action import select_record
@@ -32,7 +29,7 @@ class PySettingsPage(QWidget):
         self.setting_row_save = QHBoxLayout()
 
         self.setting_language_select = QHBoxLayout()
-        self.setting_page_language_lable = PyLabel('Language')
+        self.setting_page_language_lable = PyLabel("Language")
         self.setting_page_select_language = PyComboBox(self.language)
         language_index = default_thread_index(globals_var.LANGUAGE, self.language)
         self.setting_page_select_language.setCurrentIndex(language_index)
@@ -45,7 +42,7 @@ class PySettingsPage(QWidget):
         self.setting_row_1.addLayout(self.setting_language_select)
 
         self.setting_download_location = QHBoxLayout()
-        self.setting_page_directory_lable = PyLabel('Path')
+        self.setting_page_directory_lable = PyLabel("Path")
         self.setting_page_display_directory = PyLineEdit(self.setting_down_path)
         self.setting_page_select_directory = PyIconButton(
             icon_path=Functions.set_svg_icon("icon_folder_open.svg"),
@@ -63,7 +60,7 @@ class PySettingsPage(QWidget):
         self.setting_row_2.addLayout(self.setting_download_location, 1)
 
         self.setting_thread_select = QHBoxLayout()
-        self.setting_page_thread_label = PyLabel('Task')
+        self.setting_page_thread_label = PyLabel("Task")
         self.setting_page_thread_select = PyComboBox(self.threads)
         thread_index = default_thread_index(globals_var.THREAD, self.threads)
         self.setting_page_thread_select.setCurrentIndex(thread_index)
@@ -74,7 +71,7 @@ class PySettingsPage(QWidget):
         self.setting_row_3.addLayout(self.setting_thread_select, 1)
 
         self.setting_themes_select = QHBoxLayout()
-        self.setting_page_themes_lable = PyLabel('Themes')
+        self.setting_page_themes_lable = PyLabel("Themes")
         self.setting_page_select_themes = PyComboBox(self.themes)
         theme_index = default_thread_index(globals_var.THEME, self.themes)
         self.setting_page_select_themes.setCurrentIndex(theme_index)
@@ -86,10 +83,12 @@ class PySettingsPage(QWidget):
         self.setting_row_4.addLayout(self.setting_themes_select)
 
         self.setting_proxy = QHBoxLayout()
-        self.setting_page_proxy_label = PyLabel('PROXY')
-        self.setting_page_proxy_input = PyLineEdit(text=self.setting_proxy_http,
-                                                   place_holder_text='(http://xxx:xxxx) ; or '
-                                                                     '(http://xxx:xxxx) ; (https://xxx:xxxx)')
+        self.setting_page_proxy_label = PyLabel("PROXY")
+        self.setting_page_proxy_input = PyLineEdit(
+            text=self.setting_proxy_http,
+            place_holder_text="(http://xxx:xxxx) ; or "
+            "(http://xxx:xxxx) ; (https://xxx:xxxx)",
+        )
         max_h_w(self.setting_page_proxy_label, 48, 80)
         max_h_w(self.setting_page_proxy_input, 48, 570)
         self.setting_proxy.addWidget(self.setting_page_proxy_label)
@@ -98,7 +97,9 @@ class PySettingsPage(QWidget):
 
         # save button
 
-        self.setting_save_button = PyPushButton('Save', 8, "#1b1e23", "#4A5A71", "#4A5A71", "#037aff")
+        self.setting_save_button = PyPushButton(
+            "Save", 8, "#1b1e23", "#4A5A71", "#4A5A71", "#037aff"
+        )
         max_h_w(self.setting_save_button, 48, 150)
         # self.setting_save_button = PyPushButton(
         #     # icon_path=Functions.set_svg_icon("icon_save_setting.svg"),
@@ -121,32 +122,34 @@ class PySettingsPage(QWidget):
         self.setLayout(self.settingQHBoxLayout)
 
         def select_directory():
-            '''
+            """
             select download directory (value invalid)
             :return: alter path (string)
-            '''
-            setting_file_path = QFileDialog.getExistingDirectory(dir=self.setting_down_path)
+            """
+            setting_file_path = QFileDialog.getExistingDirectory(
+                dir=self.setting_down_path
+            )
             self.setting_page_display_directory.setText(setting_file_path)
             return setting_file_path
 
         def select_thread():
-            '''
+            """
             select download thread (value invalid)
             :return:
-            '''
-            setting_thread = self.setting_page_thread_select.currentText()
+            """
+            self.setting_page_thread_select.currentText()
 
         def save_setting():
-            '''
+            """
             save setting all config
             :return:
-            '''
+            """
             self.setting_language = self.setting_page_select_language.currentText()
             self.setting_down_path = self.setting_page_display_directory.text()
             self.setting_thread = self.setting_page_thread_select.currentText()
             self.setting_theme = self.setting_page_select_themes.currentText()
             self.setting_proxys = self.setting_page_proxy_input.text()
-            is_reboot = ''
+            is_reboot = ""
             # old_theme = globals_var.THEME
             http_proxy = check_proxy(self.setting_proxys)
             if self.setting_theme != globals_var.THEME:
@@ -159,15 +162,17 @@ class PySettingsPage(QWidget):
                 globals_var.update_proxy(self.setting_proxys)
                 globals_var.PROXY = http_proxy
             else:
-                globals_var.update_proxy('None')
-                globals_var.PROXY = 'None'
+                globals_var.update_proxy("None")
+                globals_var.PROXY = "None"
             if is_reboot:
-                result = select_record({'download_status': 1})
-                messagebox = PyMessageBox(text = "Settinging")
+                result = select_record({"download_status": 1})
+                messagebox = PyMessageBox(text="Settinging")
                 messagebox.setWindowTitle("Update Setting")
                 if result:
-                    messagebox.setText("You are advised to pause or close the download and restart the application "
-                                       "to take effect ！")
+                    messagebox.setText(
+                        "You are advised to pause or close the download and restart the application "
+                        "to take effect ！"
+                    )
                     messagebox.addButton("OK", messagebox.RejectRole)
                     messagebox.exec()
                 else:
@@ -200,8 +205,3 @@ class PySettingsPage(QWidget):
     #     process.startDetached(program, arguments, workingDirectory)
     #
     #     QApplication.exit()
-
-
-
-
-

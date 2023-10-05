@@ -13,7 +13,7 @@ class LogOptions:
 
 
 class Logger(object):
-    def __init__(self, logger_name='log'):
+    def __init__(self, logger_name="log"):
         self.logger = logging.getLogger(logger_name)
         logging.root.setLevel(logging.NOTSET)
         # 最多存放日志的数量和间隔时间创建文件
@@ -24,7 +24,9 @@ class Logger(object):
         self.file_output_level = LogOptions.file_output_level
 
         # 日志输出格式
-        self.formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        self.formatter = logging.Formatter(
+            "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+        )
 
     def get_logger(self):
         """在logger中添加日志句柄并返回，如果logger已有句柄，则直接返回"""
@@ -37,11 +39,11 @@ class Logger(object):
             # 每天重新创建一个日志文件，最多保留backup_count份
             file_handler = TimedRotatingFileHandler(
                 filename=os.path.join(LOG_PATH, LOG_FILE_NAME),
-                when='D',
+                when="D",
                 interval=self.interval,
                 backupCount=self.backup_count,
                 delay=True,
-                encoding='utf-8'
+                encoding="utf-8",
             )
             file_handler.setFormatter(self.formatter)
             file_handler.setLevel(self.file_output_level)

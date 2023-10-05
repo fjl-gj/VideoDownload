@@ -4,8 +4,6 @@ from functools import wraps
 from app.common.constantx import SQL_LITE_DB_PATH, DB_TABLE
 from app.gui.downloader.log.log import logger
 
-from app.gui.downloader.setting.global_var_ import globals_var
-
 """
 download_status : 0  finished     1  downloading        2 pause
 is_delete       : 0  delete       1  not delete
@@ -82,16 +80,18 @@ class SqlLite:
             self.cur.close()
             self.con.close()
             return result
+
         return wrapper
 
     @init_close_database
     def check_table(self):
-        result = self.cur.execute(f'''PRAGMA table_info({DB_TABLE});''')
+        result = self.cur.execute(f"""PRAGMA table_info({DB_TABLE});""")
         return True if result.fetchone() else False
 
     @init_close_database
     def create_table(self):
-        self.cur.executescript(f'''
+        self.cur.executescript(
+            f"""
         PRAGMA foreign_keys = false;
         
         -- ----------------------------
@@ -134,7 +134,8 @@ class SqlLite:
           "url_id" ASC
         );
         
-        PRAGMA foreign_keys = true;''')
+        PRAGMA foreign_keys = true;"""
+        )
 
     def dict_factory(self, cursor, row):
         d = {}

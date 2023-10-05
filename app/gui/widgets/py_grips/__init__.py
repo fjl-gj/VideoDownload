@@ -13,5 +13,3 @@
 # https://doc.qt.io/qtforpython/licenses.html
 #
 # ///////////////////////////////////////////////////////////////
-
-from .py_grips import PyGrips

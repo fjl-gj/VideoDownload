@@ -22,20 +22,20 @@ from PySide6.QtWidgets import QWidget, QGraphicsDropShadowEffect
 
 
 class PyCircularProgress(QWidget):
-    def __init__ (
-            self,
-            value = 0,
-            progress_width = 12,
-            is_rounded = True,
-            max_value = 100,
-            progress_color = "#ff79c6",
-            enable_text = True,
-            font_family = "Segoe UI",
-            font_size = 12,
-            suffix = "%",
-            text_color = "#ff79c6",
-            enable_bg = True,
-            bg_color = "#44475a"
+    def __init__(
+        self,
+        value=0,
+        progress_width=12,
+        is_rounded=True,
+        max_value=100,
+        progress_color="#ff79c6",
+        enable_text=True,
+        font_family="Segoe UI",
+        font_size=12,
+        suffix="%",
+        text_color="#ff79c6",
+        enable_bg=True,
+        bg_color="#44475a",
     ):
         QWidget.__init__(self)
 
@@ -56,7 +56,7 @@ class PyCircularProgress(QWidget):
         self.bg_color = bg_color
 
     # ADD DROPSHADOW
-    def add_shadow (self, enable):
+    def add_shadow(self, enable):
         if enable:
             self.shadow = QGraphicsDropShadowEffect(self)
             self.shadow.setBlurRadius(15)
@@ -66,12 +66,12 @@ class PyCircularProgress(QWidget):
             self.setGraphicsEffect(self.shadow)
 
     # SET VALUE
-    def set_value (self, value):
+    def set_value(self, value):
         self.value = value
         self.repaint()  # Render progress bar after change value
 
     # PAINT EVENT (DESIGN YOUR CIRCULAR PROGRESS HERE)
-    def paintEvent (self, e):
+    def paintEvent(self, e):
         # SET PROGRESS PARAMETERS
         width = self.width() - self.progress_width
         height = self.height() - self.progress_width

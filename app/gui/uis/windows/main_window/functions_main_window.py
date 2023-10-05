@@ -29,7 +29,7 @@ from .ui_main import *
 
 
 # FUNCTIONS
-class MainFunctions():
+class MainFunctions:
     def __init__(self):
         super().__init__()
         # SETUP MAIN WINDOw
@@ -113,13 +113,13 @@ class MainFunctions():
         minimum_right = self.ui.settings["right_column_size"]["minimum"]
         maximum_right = self.ui.settings["right_column_size"]["maximum"]
 
-        # Check Left Values        
+        # Check Left Values
         if left_box_width == minimum_left and direction == "left":
             left_width = maximum_left
         else:
             left_width = minimum_left
 
-        # Check Right values        
+        # Check Right values
         if right_box_width == minimum_right and direction == "right":
             right_width = maximum_right
         else:
@@ -132,7 +132,7 @@ class MainFunctions():
         self.left_box.setEndValue(left_width)
         self.left_box.setEasingCurve(QEasingCurve.InOutQuart)
 
-        # ANIMATION RIGHT BOX        
+        # ANIMATION RIGHT BOX
         self.right_box = QPropertyAnimation(self.ui.right_column_frame, b"minimumWidth")
         self.right_box.setDuration(time_animation)
         self.right_box.setStartValue(right_box_width)

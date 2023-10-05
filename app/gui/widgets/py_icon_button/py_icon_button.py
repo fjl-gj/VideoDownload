@@ -27,27 +27,27 @@ from PySide6.QtWidgets import QPushButton, QLabel, QGraphicsDropShadowEffect
 
 class PyIconButton(QPushButton):
     def __init__(
-            self,
-            icon_path=None,
-            parent=None,
-            app_parent=None,
-            tooltip_text="",
-            btn_id=None,
-            width=30,
-            height=30,
-            radius=8,
-            bg_color="#343b48",
-            bg_color_hover="#3c4454",
-            bg_color_pressed="#2c313c",
-            icon_color="#c3ccdf",
-            icon_color_hover="#dce1ec",
-            icon_color_pressed="#edf0f5",
-            icon_color_active="#f5f6f9",
-            dark_one="#1b1e23",
-            text_foreground="#8a95aa",
-            context_color="#568af2",
-            top_margin=40,
-            is_active=False
+        self,
+        icon_path=None,
+        parent=None,
+        app_parent=None,
+        tooltip_text="",
+        btn_id=None,
+        width=30,
+        height=30,
+        radius=8,
+        bg_color="#343b48",
+        bg_color_hover="#3c4454",
+        bg_color_pressed="#2c313c",
+        icon_color="#c3ccdf",
+        icon_color_hover="#dce1ec",
+        icon_color_pressed="#edf0f5",
+        icon_color_active="#f5f6f9",
+        dark_one="#1b1e23",
+        text_foreground="#8a95aa",
+        context_color="#568af2",
+        top_margin=40,
+        is_active=False,
     ):
         super().__init__()
 
@@ -78,12 +78,7 @@ class PyIconButton(QPushButton):
 
         # TOOLTIP
         self._tooltip_text = tooltip_text
-        self._tooltip = _ToolTip(
-            app_parent,
-            tooltip_text,
-            dark_one,
-            text_foreground
-        )
+        self._tooltip = _ToolTip(app_parent, tooltip_text, dark_one, text_foreground)
         self._tooltip.hide()
 
     # SET ACTIVE MENU
@@ -117,11 +112,7 @@ class PyIconButton(QPushButton):
         rect = QRect(0, 0, self.width(), self.height())
         paint.setPen(Qt.NoPen)
         paint.setBrush(brush)
-        paint.drawRoundedRect(
-            rect,
-            self._set_border_radius,
-            self._set_border_radius
-        )
+        paint.drawRoundedRect(rect, self._set_border_radius, self._set_border_radius)
 
         # DRAW ICONS
         self.icon_paint(paint, self._set_icon_path, rect)
@@ -197,9 +188,7 @@ class PyIconButton(QPushButton):
         else:
             painter.fillRect(icon.rect(), self._set_icon_color)
         qp.drawPixmap(
-            (rect.width() - icon.width()) / 2,
-            (rect.height() - icon.height()) / 2,
-            icon
+            (rect.width() - icon.width()) / 2, (rect.height() - icon.height()) / 2, icon
         )
         painter.end()
 
@@ -213,7 +202,7 @@ class PyIconButton(QPushButton):
     # ///////////////////////////////////////////////////////////////
     def move_tooltip(self):
         # GET MAIN WINDOW PARENT
-        gp = self.mapToGlobal(QPoint(0, 0))
+        self.mapToGlobal(QPoint(0, 0))
 
         # SET WIDGET TO GET POSTION
         # Return absolute position of widget inside app
@@ -245,21 +234,14 @@ class _ToolTip(QLabel):
     }}
     """
 
-    def __init__(
-            self,
-            parent,
-            tooltip,
-            dark_one,
-            text_foreground
-    ):
+    def __init__(self, parent, tooltip, dark_one, text_foreground):
         QLabel.__init__(self)
 
         # LABEL SETUP
         style = self.style_tooltip.format(
-            _dark_one=dark_one,
-            _text_foreground=text_foreground
+            _dark_one=dark_one, _text_foreground=text_foreground
         )
-        self.setObjectName(u"label_tooltip")
+        self.setObjectName("label_tooltip")
         self.setStyleSheet(style)
         self.setMinimumHeight(34)
         self.setParent(parent)

@@ -21,6 +21,7 @@ from PySide6.QtWidgets import QWidget, QPushButton, QVBoxLayout, QFrame
 from app.gui.core.functions import *
 
 from .py_div import PyDiv
+
 # IMPORT BUTTON AND DIV
 # ///////////////////////////////////////////////////////////////
 from .py_left_menu_button import PyLeftMenuButton
@@ -38,29 +39,29 @@ class PyLeftMenu(QWidget):
     released = Signal(object)
 
     def __init__(
-            self,
-            parent=None,
-            app_parent=None,
-            dark_one="#1b1e23",
-            dark_three="#21252d",
-            dark_four="#272c36",
-            bg_one="#2c313c",
-            icon_color="#c3ccdf",
-            icon_color_hover="#dce1ec",
-            icon_color_pressed="#edf0f5",
-            icon_color_active="#f5f6f9",
-            # context_color="#568af2",
-            context_color="#037aff",
-            text_foreground="#8a95aa",
-            text_active="#dce1ec",
-            duration_time=500,
-            radius=8,
-            minimum_width=50,
-            maximum_width=240,
-            icon_path="icon_menu.svg",
-            icon_path_close="icon_menu_close.svg",
-            toggle_text="Hide Menu",
-            toggle_tooltip="Show menu"
+        self,
+        parent=None,
+        app_parent=None,
+        dark_one="#1b1e23",
+        dark_three="#21252d",
+        dark_four="#272c36",
+        bg_one="#2c313c",
+        icon_color="#c3ccdf",
+        icon_color_hover="#dce1ec",
+        icon_color_pressed="#edf0f5",
+        icon_color_active="#f5f6f9",
+        # context_color="#568af2",
+        context_color="#037aff",
+        text_foreground="#8a95aa",
+        text_active="#dce1ec",
+        duration_time=500,
+        radius=8,
+        minimum_width=50,
+        maximum_width=240,
+        icon_path="icon_menu.svg",
+        icon_path_close="icon_menu_close.svg",
+        toggle_text="Hide Menu",
+        toggle_tooltip="Show menu",
     ):
         super().__init__()
 
@@ -111,7 +112,7 @@ class PyLeftMenu(QWidget):
             context_color=self._context_color,
             text_foreground=self._text_foreground,
             text_active=self._text_active,
-            icon_path=icon_path
+            icon_path=icon_path,
         )
         self.toggle_button.clicked.connect(self.toggle_animation)
         self.div_top = PyDiv(dark_four)
@@ -133,12 +134,12 @@ class PyLeftMenu(QWidget):
     def add_menus(self, parameters):
         if parameters != None:
             for parameter in parameters:
-                _btn_icon = parameter['btn_icon']
-                _btn_id = parameter['btn_id']
-                _btn_text = parameter['btn_text']
-                _btn_tooltip = parameter['btn_tooltip']
-                _show_top = parameter['show_top']
-                _is_active = parameter['is_active']
+                _btn_icon = parameter["btn_icon"]
+                _btn_id = parameter["btn_id"]
+                _btn_text = parameter["btn_text"]
+                _btn_tooltip = parameter["btn_tooltip"]
+                _show_top = parameter["show_top"]
+                _is_active = parameter["is_active"]
 
                 self.menu = PyLeftMenuButton(
                     self._app_parent,
@@ -157,7 +158,7 @@ class PyLeftMenu(QWidget):
                     text_foreground=self._text_foreground,
                     text_active=self._text_active,
                     icon_path=_btn_icon,
-                    is_active=_is_active
+                    is_active=_is_active,
                 )
                 self.menu.clicked.connect(self.btn_clicked)
                 self.menu.released.connect(self.btn_released)

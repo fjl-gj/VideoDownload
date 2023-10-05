@@ -34,31 +34,31 @@ from app.gui.core.functions import *
 # ///////////////////////////////////////////////////////////////
 class PyLeftMenuButton(QPushButton):
     def __init__(
-            self,
-            app_parent,
-            text,
-            btn_id=None,
-            tooltip_text="",
-            margin=4,
-            dark_one="#1b1e23",
-            dark_three="#21252d",
-            dark_four="#272c36",
-            bg_one="#2c313c",
-            icon_color="#c3ccdf",
-            icon_color_hover="#dce1ec",
-            icon_color_pressed="#edf0f5",
-            icon_color_active="#f5f6f9",
-            # context_color="#568af2",
-            context_color="#fff",
-            # text_foreground="#8a95aa",
-            text_foreground="#fff",
-            # text_active="#dce1ec",
-            text_active="#fff",
-            icon_path="icon_add_user.svg",
-            icon_active_menu="active_menu.svg",
-            is_active=False,
-            is_active_tab=False,
-            is_toggle_active=False
+        self,
+        app_parent,
+        text,
+        btn_id=None,
+        tooltip_text="",
+        margin=4,
+        dark_one="#1b1e23",
+        dark_three="#21252d",
+        dark_four="#272c36",
+        bg_one="#2c313c",
+        icon_color="#c3ccdf",
+        icon_color_hover="#dce1ec",
+        icon_color_pressed="#edf0f5",
+        icon_color_active="#f5f6f9",
+        # context_color="#568af2",
+        context_color="#fff",
+        # text_foreground="#8a95aa",
+        text_foreground="#fff",
+        # text_active="#dce1ec",
+        text_active="#fff",
+        icon_path="icon_add_user.svg",
+        icon_active_menu="active_menu.svg",
+        is_active=False,
+        is_active_tab=False,
+        is_toggle_active=False,
     ):
         super().__init__()
         self.setText(text)
@@ -95,11 +95,7 @@ class PyLeftMenuButton(QPushButton):
         # TOOLTIP
         self._tooltip_text = tooltip_text
         self.tooltip = _ToolTip(
-            app_parent,
-            tooltip_text,
-            dark_one,
-            context_color,
-            text_foreground
+            app_parent, tooltip_text, dark_one, context_color, text_foreground
         )
         self.tooltip.hide()
 
@@ -114,7 +110,7 @@ class PyLeftMenuButton(QPushButton):
         p.setFont(self.font())
 
         # RECTANGLES
-        rect = QRect(4, 5, self.width(), self.height() - 10)
+        QRect(4, 5, self.width(), self.height() - 10)
         rect_inside = QRect(4, 5, self.width() - 8, self.height() - 10)
         rect_icon = QRect(0, 0, 50, self.height())
         rect_blue = QRect(4, 5, 20, self.height() - 10)
@@ -246,9 +242,7 @@ class PyLeftMenuButton(QPushButton):
         painter.setCompositionMode(QPainter.CompositionMode_SourceIn)
         painter.fillRect(icon.rect(), color)
         qp.drawPixmap(
-            (rect.width() - icon.width()) / 2,
-            (rect.height() - icon.height()) / 2,
-            icon
+            (rect.width() - icon.width()) / 2, (rect.height() - icon.height()) / 2, icon
         )
         painter.end()
 
@@ -355,23 +349,16 @@ class _ToolTip(QLabel):
     }}
     """
 
-    def __init__(
-            self,
-            parent,
-            tooltip,
-            dark_one,
-            context_color,
-            text_foreground
-    ):
+    def __init__(self, parent, tooltip, dark_one, context_color, text_foreground):
         QLabel.__init__(self)
 
         # LABEL SETUP
         style = self.style_tooltip.format(
             _dark_one=dark_one,
             _context_color=context_color,
-            _text_foreground=text_foreground
+            _text_foreground=text_foreground,
         )
-        self.setObjectName(u"label_tooltip")
+        self.setObjectName("label_tooltip")
         self.setStyleSheet(style)
         self.setMinimumHeight(34)
         self.setParent(parent)

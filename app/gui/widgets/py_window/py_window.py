@@ -37,18 +37,18 @@ from .styles import Styles
 # ///////////////////////////////////////////////////////////////
 class PyWindow(QFrame):
     def __init__(
-            self,
-            parent,
-            layout=Qt.Vertical,
-            margin=0,
-            spacing=2,
-            bg_color="#2c313c",
-            text_color="#fff",
-            text_font="9pt 'Segoe UI'",
-            border_radius=10,
-            border_size=2,
-            border_color="#343b48",
-            enable_shadow=True
+        self,
+        parent,
+        layout=Qt.Vertical,
+        margin=0,
+        spacing=2,
+        bg_color="#2c313c",
+        text_color="#fff",
+        text_font="9pt 'Segoe UI'",
+        border_radius=10,
+        border_size=2,
+        border_color="#343b48",
+        enable_shadow=True,
     ):
         super().__init__()
 
@@ -71,11 +71,11 @@ class PyWindow(QFrame):
         self.enable_shadow = enable_shadow
 
         # OBJECT NAME
-        # ///////////////////////////////////////////////////////////////   
+        # ///////////////////////////////////////////////////////////////
         self.setObjectName("pod_bg_app")
 
         # APPLY STYLESHEET
-        # /////////////////////////////////////////////////////////////// 
+        # ///////////////////////////////////////////////////////////////
         self.set_stylesheet()
 
         # ADD LAYOUT
@@ -103,55 +103,57 @@ class PyWindow(QFrame):
     # APPLY AND UPDATE STYLESHEET
     # ///////////////////////////////////////////////////////////////
     def set_stylesheet(
-            self,
-            bg_color=None,
-            border_radius=None,
-            border_size=None,
-            border_color=None,
-            text_color=None,
-            text_font=None
+        self,
+        bg_color=None,
+        border_radius=None,
+        border_size=None,
+        border_color=None,
+        text_color=None,
+        text_font=None,
     ):
         # CHECK BG COLOR
-        if bg_color != None:
+        if bg_color is not None:
             internal_bg_color = bg_color
         else:
             internal_bg_color = self.bg_color
 
         # CHECK BORDER RADIUS
-        if border_radius != None:
+        if border_radius is not None:
             internal_border_radius = border_radius
         else:
             internal_border_radius = self.border_radius
 
         # CHECK BORDER SIZE
-        if border_size != None:
+        if border_size is not None:
             internal_border_size = border_size
         else:
             internal_border_size = self.border_size
 
         # CHECK BORDER COLOR
-        if text_color != None:
+        if text_color is not None:
             internal_text_color = text_color
         else:
             internal_text_color = self.text_color
 
         # CHECK TEXT COLOR
-        if border_color != None:
+        if border_color is not None:
             internal_border_color = border_color
         else:
             internal_border_color = self.border_color
 
         # CHECK TEXT COLOR
-        if text_font != None:
+        if text_font is not None:
             internal_text_font = text_font
         else:
             internal_text_font = self.text_font
 
-        self.setStyleSheet(Styles.bg_style.format(
-            _bg_color=internal_bg_color,
-            _border_radius=internal_border_radius,
-            _border_size=internal_border_size,
-            _border_color=internal_border_color,
-            _text_color=internal_text_color,
-            _text_font=internal_text_font
-        ))
+        self.setStyleSheet(
+            Styles.bg_style.format(
+                _bg_color=internal_bg_color,
+                _border_radius=internal_border_radius,
+                _border_size=internal_border_size,
+                _border_color=internal_border_color,
+                _text_color=internal_text_color,
+                _text_font=internal_text_font,
+            )
+        )

@@ -4,7 +4,7 @@ from PySide6.QtWidgets import QComboBox
 
 # STYLE
 # ///////////////////////////////////////////////////////////////
-style = '''
+style = """
     QComboBox {{
         background-color: {_bg_color};
         border-radius: {_radius}px;
@@ -40,7 +40,7 @@ style = '''
         border: {_border_size}px solid {_context_color};
         background-color: {_bg_color_active};
     }}
-'''
+"""
 
 
 class PyComboBox(QComboBox):
@@ -54,7 +54,7 @@ class PyComboBox(QComboBox):
         selection_color="#FFF",
         bg_color="#323742",
         bg_color_active="#323742",
-        context_color="#00ABE8"
+        context_color="#00ABE8",
     ):
         super(PyComboBox, self).__init__()
 
@@ -71,19 +71,19 @@ class PyComboBox(QComboBox):
             selection_color,
             bg_color,
             bg_color_active,
-            context_color
+            context_color,
         )
 
     # SET STYLESHEET
     def set_stylesheet(
-            self,
-            radius,
-            border_size,
-            color,
-            selection_color,
-            bg_color,
-            bg_color_active,
-            context_color
+        self,
+        radius,
+        border_size,
+        color,
+        selection_color,
+        bg_color,
+        bg_color_active,
+        context_color,
     ):
         # APPLY STYLESHEET
         style_format = style.format(
@@ -93,21 +93,21 @@ class PyComboBox(QComboBox):
             _selection_color=selection_color,
             _bg_color=bg_color,
             _bg_color_active=bg_color_active,
-            _context_color=context_color
+            _context_color=context_color,
         )
         self.setStyleSheet(style_format)
 
 
 def set_stylesheet():
-    radius = 8,
-    border_size = 2,
-    color = "#FFF",
-    selection_color = "#FFF",
-    bg_color = "#333",
-    bg_color_active = "#222",
+    radius = (8,)
+    border_size = (2,)
+    color = ("#FFF",)
+    selection_color = ("#FFF",)
+    bg_color = ("#333",)
+    bg_color_active = ("#222",)
     context_color = "#00ABE8"
     # APPLY STYLESHEET
-    style = '''
+    style = """
     QComboBox {{
         background-color: {_bg_color};
         border-radius: {_radius}px;
@@ -143,7 +143,7 @@ def set_stylesheet():
         border: {_border_size}px solid {_context_color};
         background-color: {_bg_color_active};
     }}
-    '''
+    """
 
     return style.format(
         _radius=radius,
@@ -152,5 +152,5 @@ def set_stylesheet():
         _selection_color=selection_color,
         _bg_color=bg_color,
         _bg_color_active=bg_color_active,
-        _context_color=context_color
+        _context_color=context_color,
     )

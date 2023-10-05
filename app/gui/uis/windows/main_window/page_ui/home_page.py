@@ -1,21 +1,39 @@
 from PySide6.QtCore import Qt, Signal, QPoint
 from PySide6.QtGui import QPixmap
-from PySide6.QtWidgets import QWidget, QHBoxLayout, QVBoxLayout, QHeaderView, QTableWidgetItem
+from PySide6.QtWidgets import (
+    QWidget,
+    QHBoxLayout,
+    QVBoxLayout,
+    QHeaderView,
+    QTableWidgetItem,
+)
 
 from app.gui.downloader.api.gui_call_interface import run
 from app.gui.downloader.log import logger
 from app.gui.downloader.setting.database_action import insert_single_line, select_record
 from app.gui.downloader.utils import byte_to_mb
 from app.gui.core.json_themes import Themes
-from app.gui.uis.tools.utils import max_h_w, table_sort_display, min_h_w, run_in_thread_pool
-from app.gui.widgets import PyLineEdit, PyTableWidget, PyLabel, PyPushButton, PyMessageBox
+from app.gui.uis.tools.utils import (
+    max_h_w,
+    table_sort_display,
+    min_h_w,
+    run_in_thread_pool,
+)
+from app.gui.widgets import (
+    PyLineEdit,
+    PyTableWidget,
+    PyLabel,
+    PyPushButton,
+    PyMessageBox,
+)
 
 
 class ButtonLayout(QWidget):
-
     def __init__(self):
         super().__init__()
-        self.download_button = PyPushButton('Download', 8, "#9EA5AF", "#4A5A71", "#4A5A71", "#037aff")
+        self.download_button = PyPushButton(
+            "Download", 8, "#9EA5AF", "#4A5A71", "#4A5A71", "#037aff"
+        )
         hb_button = QHBoxLayout()
         hb_button.addWidget(self.download_button)
         hb_button.setAlignment(Qt.AlignCenter)
@@ -38,23 +56,29 @@ class PyLinkParse(QWidget):
         themes = Themes()
         self.themes = themes.items
         super(PyLinkParse, self).__init__(parent)
-        self.formats = ''
-        self.insert_id = ''
+        self.formats = ""
+        self.insert_id = ""
         self.child_row_1 = QVBoxLayout()
 
         self.child_row_2 = QVBoxLayout()
 
         if result:
-            self.url_id = result['url_id']
-            self.webpage_url = result['webpage_url']
-            self.result = [{'title': result['title'], 'duration': result['duration'], 'url_id': result.get('url_id')}]
-            self.title = result['title'].replace("'", '')
-            self.uploader = result['uploader']
-            self.duration = result['duration']
-            self.cove = result['cove'] if result['cove'] else ''
-            self.cove_height = result['height'] if result['height'] else ''
-            self.cove_width = result['width'] if result['width'] else ''
-            self.formats = result['formats']
+            self.url_id = result["url_id"]
+            self.webpage_url = result["webpage_url"]
+            self.result = [
+                {
+                    "title": result["title"],
+                    "duration": result["duration"],
+                    "url_id": result.get("url_id"),
+                }
+            ]
+            self.title = result["title"].replace("'", "")
+            self.uploader = result["uploader"]
+            self.duration = result["duration"]
+            self.cove = result["cove"] if result["cove"] else ""
+            self.cove_height = result["height"] if result["height"] else ""
+            self.cove_width = result["width"] if result["width"] else ""
+            self.formats = result["formats"]
 
             # LOAD COVE
             self.link_basic_information = QHBoxLayout()
@@ -77,9 +101,9 @@ class PyLinkParse(QWidget):
             self.link_basic_duration = QVBoxLayout()
 
             # LOAD INFO
-            self.link_title = PyLabel(f'Title:    {self.title}')
-            self.link_uploader = PyLabel(f'Uploader:    {self.uploader}')
-            self.link_duration = PyLabel(f'Duration:    {self.duration}')
+            self.link_title = PyLabel(f"Title:    {self.title}")
+            self.link_uploader = PyLabel(f"Uploader:    {self.uploader}")
+            self.link_duration = PyLabel(f"Duration:    {self.duration}")
             # 激活按钮及信号
             # self.download_data_button = PyIconButton(icon_path=Functions.set_svg_icon('icon_select_download.svg'))
 
@@ -142,7 +166,7 @@ class PyLinkParse(QWidget):
 
         if self.formats:
             for format_list in self.formats:
-                filessize = byte_to_mb(format_list['filesize'])
+                filessize = byte_to_mb(format_list["filesize"])
                 row_number = self.video_select_table.rowCount()
                 self.video_select_table.insertRow(row_number)  # Insert row
                 chk_box_item = QTableWidgetItem()
@@ -165,10 +189,18 @@ class PyLinkParse(QWidget):
                 button_.download_button.clicked.connect(self.single_button_clicked)
                 # self.video_select_table.setItem(row_number, 0, chk_box_item)  # Add name
                 # self.video_select_table.setCellWidget(row_number, 0, self.chebox_down)
-                self.video_select_table.setItem(row_number, 0, table_data_handle(f'{row_number + 1}'))
-                self.video_select_table.setItem(row_number, 1, table_data_handle(format_list['format_note']))
-                self.video_select_table.setItem(row_number, 2, table_data_handle(format_list['ext']))
-                self.video_select_table.setItem(row_number, 3, table_data_handle(filessize))
+                self.video_select_table.setItem(
+                    row_number, 0, table_data_handle(f"{row_number + 1}")
+                )
+                self.video_select_table.setItem(
+                    row_number, 1, table_data_handle(format_list["format_note"])
+                )
+                self.video_select_table.setItem(
+                    row_number, 2, table_data_handle(format_list["ext"])
+                )
+                self.video_select_table.setItem(
+                    row_number, 3, table_data_handle(filessize)
+                )
                 # self.video_select_table.setCellWidget(row_number, 4, download_button)
                 self.video_select_table.setCellWidget(row_number, 4, button_)
                 self.video_select_table.setRowHeight(row_number, 50)
@@ -176,10 +208,16 @@ class PyLinkParse(QWidget):
 
         # config table style
         self.video_select_table.setShowGrid(False)
-        self.video_select_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        self.video_select_table.horizontalHeader().setSectionResizeMode(
+            QHeaderView.Stretch
+        )
         # self.video_select_table.setAlternatingRowColors(True)
-        self.video_select_table.horizontalHeader().setSectionResizeMode(0, QHeaderView.Interactive)
-        self.video_select_table.horizontalHeader().setSectionResizeMode(4, QHeaderView.Interactive)
+        self.video_select_table.horizontalHeader().setSectionResizeMode(
+            0, QHeaderView.Interactive
+        )
+        self.video_select_table.horizontalHeader().setSectionResizeMode(
+            4, QHeaderView.Interactive
+        )
         self.video_select_table.setAutoScroll(False)
         # self.video_select_table.setAlternatingRowColors(True)
         # self.video_select_table.setPalette(QPalette("#22272E"))
@@ -187,12 +225,16 @@ class PyLinkParse(QWidget):
         self.video_select_table.setColumnWidth(0, 80)
         self.video_select_table.setColumnWidth(4, 200)
 
-        self.video_select_table.itemEntered.connect(lambda item: self.video_select_table.handleItemEntered(item))
-        self.video_select_table.itemExited.connect(lambda item: self.video_select_table.handleItemExited(item))
+        self.video_select_table.itemEntered.connect(
+            lambda item: self.video_select_table.handleItemEntered(item)
+        )
+        self.video_select_table.itemExited.connect(
+            lambda item: self.video_select_table.handleItemExited(item)
+        )
         # GET TABLE CHE  BOX CHECK
 
         def on_tableWidget_itemChanged(row, column):
-            logger.info(f'{row, column}')
+            logger.info(f"{row, column}")
 
         self.allQVBoxLayout = QVBoxLayout()
         if not result:
@@ -221,11 +263,13 @@ class PyLinkParse(QWidget):
     #     pass
 
     def chebox_down_action(self, state, chebox_down):
-        chebox = self.sender()
+        self.sender()
         # index = self.video_select_table.indexAt(chebox.pos())
 
     def ready_download_data(self):
-        self.download_action.emit(self.result, self.download_num, self.formats, [self.insert_id])
+        self.download_action.emit(
+            self.result, self.download_num, self.formats, [self.insert_id]
+        )
         for i in self.download_num:
             self.video_select_table.cellWidget(i, 4).setText("download in progress")
             self.video_select_table.cellWidget(i, 4).etEnabled(False)
@@ -237,37 +281,57 @@ class PyLinkParse(QWidget):
         index = self.video_select_table.indexAt(QPoint(x, y))
 
         # self.video_select_table.cellWidget(index.row(), index.column()).download_button.setClickable(False)
-        format_id = self.formats[index.row()].get('format_id')
-        result = select_record({'url_id': [self.url_id, 'AND'], 'format_id': int(format_id)})
+        format_id = self.formats[index.row()].get("format_id")
+        result = select_record(
+            {"url_id": [self.url_id, "AND"], "format_id": int(format_id)}
+        )
         logger.info(f"select record:{result}")
         if not result:
-            self.video_select_table.cellWidget(index.row(), index.column()).download_button.setText('Downloading')
-            self.video_select_table.cellWidget(index.row(), index.column()).download_button.setEnabled(False)
-            self.video_select_table.cellWidget(index.row(), index.column()).download_button.setStyleSheet('''
+            self.video_select_table.cellWidget(
+                index.row(), index.column()
+            ).download_button.setText("Downloading")
+            self.video_select_table.cellWidget(
+                index.row(), index.column()
+            ).download_button.setEnabled(False)
+            self.video_select_table.cellWidget(
+                index.row(), index.column()
+            ).download_button.setStyleSheet(
+                """
                                                                                             border: none;
                                                                                             padding-left: 10px;
                                                                                             padding-right: 5px;
                                                                                             border-radius: 8;
                                                                                             background-color: #037AFF;
-                                                                                            ''')
-            quality = self.formats[index.row()].get('format_note')
-            file_type = self.formats[index.row()].get('ext')
-            file_size = byte_to_mb(self.formats[index.row()].get('filesize'))
-            insert_data = {'title': self.title, 'uploader': self.uploader, 'duration': self.duration,
-                           'quality': quality, 'file_type': file_type, 'file_size': file_size, 'format_id': format_id,
-                           'url_id': self.url_id, 'webpage_url': self.webpage_url}
+                                                                                            """
+            )
+            quality = self.formats[index.row()].get("format_note")
+            file_type = self.formats[index.row()].get("ext")
+            file_size = byte_to_mb(self.formats[index.row()].get("filesize"))
+            insert_data = {
+                "title": self.title,
+                "uploader": self.uploader,
+                "duration": self.duration,
+                "quality": quality,
+                "file_type": file_type,
+                "file_size": file_size,
+                "format_id": format_id,
+                "url_id": self.url_id,
+                "webpage_url": self.webpage_url,
+            }
             self.insert_id = insert_single_line(insert_data)
             logger.info(f"插入——id{self.insert_id}")
             if index.isValid():
-                logger.info(f'{[index.row()], [self.insert_id]}')
-                self.download_action.emit(self.result, [index.row()], self.formats, [self.insert_id])
+                logger.info(f"{[index.row()], [self.insert_id]}")
+                self.download_action.emit(
+                    self.result, [index.row()], self.formats, [self.insert_id]
+                )
         else:
             if len(result) == 1:
                 result = result[0]
                 messagebox = PyMessageBox(text="Downloading")
                 # messagebox.setWindowIcon(Functions.set_svg_icon("icon_warm_prompt.svg"))
                 messagebox.setWindowTitle("Download Prompt")
-                if result.get('download_status') == 1:
+                if result.get("download_status") == 1:
                     messagebox.setText("Downloading...")
                 else:
                     messagebox.setText("Download already saved whether overwrite?")
@@ -278,7 +342,8 @@ class PyLinkParse(QWidget):
 
 
 class PyHomePage(QWidget):
-    """定义一种信号，因为有文本框和进度条两个类，此处要一个参数，类型是：dict """
+    """定义一种信号，因为有文本框和进度条两个类，此处要一个参数，类型是：dict"""
+
     child_si = Signal(dict)
 
     def __init__(self, ui, parent=None):
@@ -288,9 +353,13 @@ class PyHomePage(QWidget):
         self.home_row_1 = QHBoxLayout()
         self.home_row_2 = QHBoxLayout()
         self.home_link_and_button = QHBoxLayout()
-        self.home_link_input = PyLineEdit(place_holder_text="input link",)
+        self.home_link_input = PyLineEdit(
+            place_holder_text="input link",
+        )
 
-        self.home_link_button = PyPushButton('Download', 8, "#9EA5AF", "#4A5A71", "#4A5A71", "#037aff")
+        self.home_link_button = PyPushButton(
+            "Download", 8, "#9EA5AF", "#4A5A71", "#4A5A71", "#037aff"
+        )
         max_h_w(self.home_link_input, 48, 700)
         max_h_w(self.home_link_button, 48, 180)
         min_h_w(self.home_link_input, 48, 680)
@@ -304,7 +373,7 @@ class PyHomePage(QWidget):
         self.homeQHBoxLayout.addLayout(self.home_row_1, 0)
         self.homeQHBoxLayout.setSpacing(24)
         self.homeQHBoxLayout.addLayout(self.home_row_2, 0)
-        logger.info('Home page init')
+        logger.info("Home page init")
         self.setLayout(self.homeQHBoxLayout)
 
     def add_video_table(self, widget):
@@ -312,15 +381,15 @@ class PyHomePage(QWidget):
 
     def parent_link(self):
         # task = ThreadPoolExecutor(max_workers=2)
-        logger.info('submit task')
+        logger.info("submit task")
         self.child_window_and_link_parem()
 
     @run_in_thread_pool()
     def child_window_and_link_parem(self):
-        logger.info('get link')
+        logger.info("get link")
         # 调用 emit方法发信号时，传入参数必须是这里指定的参数类型
         link = self.home_link_input.text()
         if link:
-            logger.info('start perform task')
+            logger.info("start perform task")
             result = run(link)
             self.child_si.emit(result)

@@ -33,6 +33,7 @@ from PySide6.QtCore import Qt
 from PySide6.QtGui import QClipboard
 
 from .functions_main_window import *
+
 # PY WINDOW
 # ///////////////////////////////////////////////////////////////
 from .page_ui.download_page import PyDownloadPage
@@ -62,7 +63,7 @@ class SetupMainWindow:
             "btn_text": "Home",
             "btn_tooltip": "Home page",
             "show_top": True,
-            "is_active": True
+            "is_active": True,
         },
         {
             "btn_icon": "icon_download.svg",
@@ -70,7 +71,7 @@ class SetupMainWindow:
             "btn_text": "Download",
             "btn_tooltip": "Download page",
             "show_top": True,
-            "is_active": False
+            "is_active": False,
         },
         {
             "btn_icon": "icon_info.svg",
@@ -78,7 +79,7 @@ class SetupMainWindow:
             "btn_text": "Info",
             "btn_tooltip": "Info page",
             "show_top": False,
-            "is_active": False
+            "is_active": False,
         },
         {
             "btn_icon": "icon_settings.svg",
@@ -86,8 +87,8 @@ class SetupMainWindow:
             "btn_text": "Settings",
             "btn_tooltip": "Settings page",
             "show_top": False,
-            "is_active": False
-        }
+            "is_active": False,
+        },
     ]
 
     # ADD TITLE BAR MENUS
@@ -97,7 +98,7 @@ class SetupMainWindow:
             "btn_icon": "icon_settings.svg",
             "btn_id": "btn_top_settings",
             "btn_tooltip": "Top settings",
-            "is_active": False
+            "is_active": False,
         }
     ]
 
@@ -217,7 +218,7 @@ class SetupMainWindow:
             if self.home_page.child_exsit:
                 self.child_widget.close()
             self.child_widget = PyLinkParse(self.ui, resule)
-            logger.info('loading child page')
+            logger.info("loading child page")
             self.home_page.add_video_table(self.child_widget)
             self.home_page.child_exsit = 1
             self.child_widget.download_action.connect(download_list)
@@ -232,7 +233,7 @@ class SetupMainWindow:
                 if link == clipboard_text:
                     return False
                 else:
-                    if clipboard_text.startswith('http', 0):
+                    if clipboard_text.startswith("http", 0):
                         action_clipboard(mime_data)
 
         # @run_in_thread_pool()
@@ -244,7 +245,7 @@ class SetupMainWindow:
         self.home_page = PyHomePage(self.ui)
         self.clipboard = QtWidgets.QApplication.clipboard()
         self.clipboard.dataChanged.connect(on_clipboard_change)
-        logger.info('loading home page')
+        logger.info("loading home page")
         self.child_widget = PyLinkParse(self.ui, [])
         self.home_page.child_si.connect(show_child_window)
         self.ui.load_pages.home_page_all_config.addWidget(self.home_page)
@@ -254,21 +255,28 @@ class SetupMainWindow:
         # Download Page
         # ///////////////////////////////////////////////////////////////
         self.download_page = PyDownloadPage(self.ui)
-        logger.info('loading download page')
+        logger.info("loading download page")
         self.ui.load_pages.download_page_all_config.addWidget(self.download_page)
 
         def download_status(download_):
             logger.info(download_)
             row = download_[0]
             col = 4
-            text = 'Reload' if '-1' == download_[2] else download_[2]
-            bg_color = '#037AFF' if text == 'Downloading' else '#495A71'
+            text = "Reload" if "-1" == download_[2] else download_[2]
+            bg_color = "#037AFF" if text == "Downloading" else "#495A71"
             if self.child_widget.video_select_table.cellWidget(row, col):
-                self.child_widget.video_select_table.cellWidget(row, col).download_button.setText(text)
-                self.child_widget.video_select_table.cellWidget(row, col).download_button.setEnabled(False)
-                self.child_widget.video_select_table.cellWidget(row, col).download_button.setStyleSheet(
-                    f'''border: none; padding-left: 10px; padding-right: 5px; border-radius: 8;
-                            background-color: {bg_color};''')
+                self.child_widget.video_select_table.cellWidget(
+                    row, col
+                ).download_button.setText(text)
+                self.child_widget.video_select_table.cellWidget(
+                    row, col
+                ).download_button.setEnabled(False)
+                self.child_widget.video_select_table.cellWidget(
+                    row, col
+                ).download_button.setStyleSheet(
+                    f"""border: none; padding-left: 10px; padding-right: 5px; border-radius: 8;
+                            background-color: {bg_color};"""
+                )
 
         # Download status
         self.download_page.download_page_status_.connect(download_status)
@@ -276,7 +284,7 @@ class SetupMainWindow:
         # Setting Page
         # ///////////////////////////////////////////////////////////////
         self.settings_page = PySettingsPage(self.ui)
-        logger.info('loading settings page')
+        logger.info("loading settings page")
         self.ui.load_pages.setting_page_all_config.addWidget(self.settings_page)
 
         # ///////////////////////////////////////////////////////////////
@@ -294,4 +302,6 @@ class SetupMainWindow:
             self.bottom_grip.setGeometry(5, self.height() - 15, self.width() - 10, 10)
             self.top_right_grip.setGeometry(self.width() - 20, 5, 15, 15)
             self.bottom_left_grip.setGeometry(5, self.height() - 20, 15, 15)
-            self.bottom_right_grip.setGeometry(self.width() - 20, self.height() - 20, 15, 15)
+            self.bottom_right_grip.setGeometry(
+                self.width() - 20, self.height() - 20, 15, 15
+            )
