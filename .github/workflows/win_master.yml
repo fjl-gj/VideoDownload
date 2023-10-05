@@ -23,6 +23,11 @@ jobs:
         python -m pip install --upgrade pip
         python -m pip install -r conf/requirements
 
+    - name: Install Sqlite
+      - run: |
+        choco install sqlite
+        refreshenv
+
     - name: Deploy
       run: |
         python main.py
