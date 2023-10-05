@@ -22,7 +22,7 @@ import os
 # APP SETTINGS
 # ///////////////////////////////////////////////////////////////
 from app.common.constantx import CONF_FILE_PATH
-from app.gui.downloader.log import logger
+from app.gui.downloader.log.log import logger
 
 
 class Settings(object):

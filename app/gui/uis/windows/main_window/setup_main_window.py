@@ -34,7 +34,7 @@ from PySide6.QtGui import QClipboard
 
 from app.gui.core.json_settings import Settings
 from app.gui.core.json_themes import Themes
-from app.gui.downloader.log import logger
+from app.gui.downloader.log.log import logger
 from app.gui.widgets.py_grips.py_grips import PyGrips
 
 # PY WINDOW

@@ -5,7 +5,7 @@ from PySide6.QtWidgets import (QHBoxLayout, QHeaderView, QTableWidgetItem,
 
 from app.gui.core.json_themes import Themes
 from app.gui.downloader.api.gui_call_interface import run
-from app.gui.downloader.log import logger
+from app.gui.downloader.log.log import logger
 from app.gui.downloader.setting.database_action import select_record
 from app.gui.downloader.setting.database_action.insert_record import \
     insert_single_line

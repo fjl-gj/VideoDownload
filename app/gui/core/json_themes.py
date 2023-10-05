@@ -25,7 +25,7 @@ from app.common.constantx import THEMES_PATH
 from app.gui.core.json_settings import Settings
 # APP THEMES
 # ///////////////////////////////////////////////////////////////
-from app.gui.downloader.log import logger
+from app.gui.downloader.log.log import logger
 from app.gui.downloader.setting.global_var_ import globals_var
 
 THEMES_FILE_NAME = f"{globals_var.THEME}.json"
