@@ -3,22 +3,29 @@ from concurrent.futures.thread import ThreadPoolExecutor
 
 import requests
 from PySide6.QtCore import QFileSystemWatcher, Qt, Signal
-from PySide6.QtWidgets import (QDialog, QFormLayout, QHBoxLayout, QLabel,
-                               QListWidgetItem, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (
+    QDialog,
+    QFormLayout,
+    QHBoxLayout,
+    QLabel,
+    QListWidgetItem,
+    QVBoxLayout,
+    QWidget,
+)
 
 from app.gui.core.functions import Functions
 from app.gui.downloader.log.log import logger
-from app.gui.downloader.setting.database_action.delete_record import \
-    delete_single_line_record
-from app.gui.downloader.setting.database_action.select_record import \
-    select_record
-from app.gui.downloader.setting.database_action.update_record import \
-    update_single_line_record
+from app.gui.downloader.setting.database_action.delete_record import (
+    delete_single_line_record,
+)
+from app.gui.downloader.setting.database_action.select_record import select_record
+from app.gui.downloader.setting.database_action.update_record import (
+    update_single_line_record,
+)
 from app.gui.downloader.setting.global_var_ import GlobalVar, globals_var
 from app.gui.downloader.utils import byte_to_mb, result_proxy
 from app.gui.uis.tools.utils import replace_other_char
-from app.gui.widgets.py_circular_progress.py_circular_progress import \
-    PyCircularProgress
+from app.gui.widgets.py_circular_progress.py_circular_progress import PyCircularProgress
 from app.gui.widgets.py_icon_button.py_icon_button import PyIconButton
 from app.gui.widgets.py_lable.py_lable import PyLabel
 from app.gui.widgets.py_list_widget.py_list_widget import PyListWidget

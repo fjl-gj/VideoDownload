@@ -1,6 +1,5 @@
 from app.common.constantx import DB_TABLE
-from app.gui.downloader.setting.database_action.basics_execute import \
-    basics_execute
+from app.gui.downloader.setting.database_action.basics_execute import basics_execute
 
 
 def update_single_line_record(builder, update_data):

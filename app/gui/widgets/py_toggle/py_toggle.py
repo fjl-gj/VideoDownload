@@ -16,8 +16,7 @@
 
 # IMPORT QT CORE
 # ///////////////////////////////////////////////////////////////
-from PySide6.QtCore import (Property, QEasingCurve, QPoint, QPropertyAnimation,
-                            QRect, Qt)
+from PySide6.QtCore import Property, QEasingCurve, QPoint, QPropertyAnimation, QRect, Qt
 from PySide6.QtGui import QColor, QFont, QPainter
 from PySide6.QtWidgets import QCheckBox
 

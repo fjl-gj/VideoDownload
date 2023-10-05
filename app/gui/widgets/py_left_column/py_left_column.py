@@ -20,6 +20,7 @@ from PySide6.QtCore import Qt, Signal
 from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QVBoxLayout, QWidget
 
 from app.gui.uis.columns.ui_left_column import Ui_LeftColumn
+
 # IMPORT QT CORE
 # ///////////////////////////////////////////////////////////////
 from app.gui.widgets.py_left_column.py_icon import PyIcon

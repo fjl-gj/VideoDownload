@@ -43,6 +43,7 @@ from .functions_main_window import MainFunctions
 from .page_ui.download_page import PyDownloadPage
 from .page_ui.home_page import PyHomePage, PyLinkParse
 from .page_ui.setting_page import PySettingsPage
+
 # LOAD UI MAIN
 # ///////////////////////////////////////////////////////////////
 from .ui_main import UiMainWindow

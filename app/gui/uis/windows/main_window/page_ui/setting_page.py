@@ -1,9 +1,9 @@
 from PySide6.QtWidgets import QFileDialog, QHBoxLayout, QVBoxLayout, QWidget
 
 from app.gui.core.functions import Functions
+
 # from app.gui.downloader.setting.database_action import select_record
-from app.gui.downloader.setting.database_action.select_record import \
-    select_record
+from app.gui.downloader.setting.database_action.select_record import select_record
 from app.gui.downloader.setting.global_var_ import globals_var
 from app.gui.downloader.utils import check_proxy
 from app.gui.uis.tools.utils import default_thread_index, max_h_w

@@ -1,6 +1,5 @@
 from app.common.constantx import DB_TABLE
-from app.gui.downloader.setting.database_action.basics_execute import \
-    init_close_sqlite
+from app.gui.downloader.setting.database_action.basics_execute import init_close_sqlite
 
 
 @init_close_sqlite

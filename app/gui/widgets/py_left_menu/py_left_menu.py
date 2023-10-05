@@ -23,6 +23,7 @@ from PySide6.QtWidgets import QFrame, QPushButton, QVBoxLayout, QWidget
 # ///////////////////////////////////////////////////////////////
 from ...core.functions import Functions
 from .py_div import PyDiv
+
 # IMPORT BUTTON AND DIV
 # ///////////////////////////////////////////////////////////////
 from .py_left_menu_button import PyLeftMenuButton

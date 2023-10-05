@@ -22,8 +22,7 @@
 
 # LOAD UI MAIN
 # ///////////////////////////////////////////////////////////////
-from PySide6.QtCore import (QEasingCurve, QParallelAnimationGroup,
-                            QPropertyAnimation)
+from PySide6.QtCore import QEasingCurve, QParallelAnimationGroup, QPropertyAnimation
 from PySide6.QtWidgets import QPushButton
 
 # FUNCTIONS

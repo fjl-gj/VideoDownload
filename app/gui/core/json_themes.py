@@ -23,6 +23,7 @@ import os
 # ///////////////////////////////////////////////////////////////
 from app.common.constantx import THEMES_PATH
 from app.gui.core.json_settings import Settings
+
 # APP THEMES
 # ///////////////////////////////////////////////////////////////
 from app.gui.downloader.log.log import logger

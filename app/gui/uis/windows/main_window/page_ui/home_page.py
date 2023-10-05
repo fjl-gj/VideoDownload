@@ -1,17 +1,25 @@
 from PySide6.QtCore import QPoint, Qt, Signal
 from PySide6.QtGui import QPixmap
-from PySide6.QtWidgets import (QHBoxLayout, QHeaderView, QTableWidgetItem,
-                               QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (
+    QHBoxLayout,
+    QHeaderView,
+    QTableWidgetItem,
+    QVBoxLayout,
+    QWidget,
+)
 
 from app.gui.core.json_themes import Themes
 from app.gui.downloader.api.gui_call_interface import run
 from app.gui.downloader.log.log import logger
 from app.gui.downloader.setting.database_action import select_record
-from app.gui.downloader.setting.database_action.insert_record import \
-    insert_single_line
+from app.gui.downloader.setting.database_action.insert_record import insert_single_line
 from app.gui.downloader.utils import byte_to_mb
-from app.gui.uis.tools.utils import (max_h_w, min_h_w, run_in_thread_pool,
-                                     table_sort_display)
+from app.gui.uis.tools.utils import (
+    max_h_w,
+    min_h_w,
+    run_in_thread_pool,
+    table_sort_display,
+)
 from app.gui.widgets.py_lable.py_lable import PyLabel
 from app.gui.widgets.py_line_edit.py_line_edit import PyLineEdit
 from app.gui.widgets.py_message.py_message import PyMessageBox
