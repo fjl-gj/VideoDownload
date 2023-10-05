@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  deploy:
+  pre_build:
     runs-on: windows-latest
 
     steps:
@@ -21,7 +21,6 @@ jobs:
       - name: Install Sqlite
         run: |
           choco install sqlite
-          refreshenv
 
       - name: Install Requirements
         run: |
