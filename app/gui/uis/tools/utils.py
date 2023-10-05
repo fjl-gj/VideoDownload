@@ -1,5 +1,5 @@
 from concurrent.futures.thread import ThreadPoolExecutor
-from functools import wraps, partial
+from functools import partial, wraps
 
 EXECUTOR = ThreadPoolExecutor(max_workers=8)
 

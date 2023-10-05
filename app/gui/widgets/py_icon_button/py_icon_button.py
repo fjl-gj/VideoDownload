@@ -20,9 +20,9 @@
 
 # PY TITLE BUTTON
 # ///////////////////////////////////////////////////////////////
-from PySide6.QtCore import Qt, QRect, QEvent, QPoint
-from PySide6.QtGui import QPainter, QColor, QBrush, QPixmap
-from PySide6.QtWidgets import QPushButton, QLabel, QGraphicsDropShadowEffect
+from PySide6.QtCore import QEvent, QPoint, QRect, Qt
+from PySide6.QtGui import QBrush, QColor, QPainter, QPixmap
+from PySide6.QtWidgets import QGraphicsDropShadowEffect, QLabel, QPushButton
 
 
 class PyIconButton(QPushButton):
@@ -222,9 +222,9 @@ class PyIconButton(QPushButton):
 # ///////////////////////////////////////////////////////////////
 class _ToolTip(QLabel):
     # TOOLTIP / LABEL StyleSheet
-    style_tooltip = """ 
-    QLabel {{		
-        background-color: {_dark_one};	
+    style_tooltip = """
+    QLabel {{
+        background-color: {_dark_one};
         color: {_text_foreground};
         padding-left: 10px;
         padding-right: 10px;

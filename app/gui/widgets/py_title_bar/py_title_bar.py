@@ -19,28 +19,21 @@
 from PySide6.QtCore import QSize, Signal
 from PySide6.QtGui import QCursor, Qt
 from PySide6.QtSvgWidgets import QSvgWidget
-from PySide6.QtWidgets import QWidget, QVBoxLayout, QFrame, QHBoxLayout, QLabel
-
-# from app.gui.core.functions import *
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QVBoxLayout, QWidget
 
 # IMPORT SETTINGS
 # ///////////////////////////////////////////////////////////////
 from app.gui.core.json_settings import Settings
 
-# IMPORT DIV
-# ///////////////////////////////////////////////////////////////
-from .py_div import PyDiv
-
-# IMPORT BUTTON
-# ///////////////////////////////////////////////////////////////
-from .py_title_button import PyTitleButton
-
-# IMPORT QT CORE
-# ///////////////////////////////////////////////////////////////
-
 # GLOBALS
 # ///////////////////////////////////////////////////////////////
 from ...core.functions import Functions
+# IMPORT DIV
+# ///////////////////////////////////////////////////////////////
+from .py_div import PyDiv
+# IMPORT BUTTON
+# ///////////////////////////////////////////////////////////////
+from .py_title_button import PyTitleButton
 
 _is_maximized = False
 _old_size = QSize()

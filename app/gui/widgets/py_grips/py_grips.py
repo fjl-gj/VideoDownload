@@ -25,7 +25,7 @@
 # ///////////////////////////////////////////////////////////////
 from PySide6.QtCore import QRect, QSize
 from PySide6.QtGui import QCursor, Qt
-from PySide6.QtWidgets import QWidget, QSizeGrip, QFrame
+from PySide6.QtWidgets import QFrame, QSizeGrip, QWidget
 
 
 class PyGrips(QWidget):

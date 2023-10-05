@@ -1,11 +1,18 @@
-from PySide6.QtWidgets import QWidget, QHBoxLayout, QVBoxLayout, QFileDialog
+from PySide6.QtWidgets import QFileDialog, QHBoxLayout, QVBoxLayout, QWidget
 
-from app.gui.downloader.setting.database_action import select_record
-from app.gui.downloader.setting.global_var_ import globals_var
 from app.gui.core.functions import Functions
-from app.gui.uis.tools.utils import max_h_w, default_thread_index
+# from app.gui.downloader.setting.database_action import select_record
+from app.gui.downloader.setting.database_action.select_record import \
+    select_record
+from app.gui.downloader.setting.global_var_ import globals_var
 from app.gui.downloader.utils import check_proxy
-from app.gui.widgets import *
+from app.gui.uis.tools.utils import default_thread_index, max_h_w
+from app.gui.widgets.py_combo_box.py_combo_box import PyComboBox
+from app.gui.widgets.py_icon_button.py_icon_button import PyIconButton
+from app.gui.widgets.py_lable.py_lable import PyLabel
+from app.gui.widgets.py_line_edit.py_line_edit import PyLineEdit
+from app.gui.widgets.py_message.py_message import PyMessageBox
+from app.gui.widgets.py_push_button.py_push_button import PyPushButton
 
 
 class PySettingsPage(QWidget):
@@ -170,7 +177,8 @@ class PySettingsPage(QWidget):
                 messagebox.setWindowTitle("Update Setting")
                 if result:
                     messagebox.setText(
-                        "You are advised to pause or close the download and restart the application "
+                        "You are advised to pause or close the download "
+                        "and restart the application "
                         "to take effect ！"
                     )
                     messagebox.addButton("OK", messagebox.RejectRole)

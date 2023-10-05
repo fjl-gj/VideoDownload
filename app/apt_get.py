@@ -20,10 +20,10 @@
 # If you're wondering how this is created, it is generated using
 # `scripts/generate.py` in https://github.com/pypa/get-pip.
 
-import sys
 import os.path
 import pkgutil
 import shutil
+import sys
 import tempfile
 from base64 import b85decode
 

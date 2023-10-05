@@ -14,7 +14,7 @@ def fomart_time(dur):
 
 
 def byte_to_mb(bytes):
-    if type(bytes) == str:
+    if type(bytes) is str:
         return bytes
     if bytes:
         if int(bytes) >= (1024 * 1024):

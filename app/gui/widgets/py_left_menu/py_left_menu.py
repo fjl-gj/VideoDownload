@@ -16,23 +16,18 @@
 
 # IMPORT FUNCTIONS
 # ///////////////////////////////////////////////////////////////
-from PySide6.QtCore import Signal, QPropertyAnimation, QEasingCurve, Qt
-from PySide6.QtWidgets import QWidget, QPushButton, QVBoxLayout, QFrame
-from app.gui.core.functions import *
+from PySide6.QtCore import QEasingCurve, QPropertyAnimation, Qt, Signal
+from PySide6.QtWidgets import QFrame, QPushButton, QVBoxLayout, QWidget
 
+# PY LEFT MENU
+# ///////////////////////////////////////////////////////////////
+from ...core.functions import Functions
 from .py_div import PyDiv
-
 # IMPORT BUTTON AND DIV
 # ///////////////////////////////////////////////////////////////
 from .py_left_menu_button import PyLeftMenuButton
 
 
-# IMPORT QT CORE
-# ///////////////////////////////////////////////////////////////
-
-
-# PY LEFT MENU
-# ///////////////////////////////////////////////////////////////
 class PyLeftMenu(QWidget):
     # SIGNALS
     clicked = Signal(object)
@@ -132,7 +127,7 @@ class PyLeftMenu(QWidget):
     # Add btns and emit signals
     # ///////////////////////////////////////////////////////////////
     def add_menus(self, parameters):
-        if parameters != None:
+        if parameters is not None:
             for parameter in parameters:
                 _btn_icon = parameter["btn_icon"]
                 _btn_id = parameter["btn_id"]

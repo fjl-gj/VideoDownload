@@ -1,5 +1,6 @@
 from app.common.constantx import DB_TABLE
-from app.gui.downloader.setting.database_action.basics_execute import basics_execute
+from app.gui.downloader.setting.database_action.basics_execute import \
+    basics_execute
 
 
 def update_single_line_record(builder, update_data):
@@ -16,20 +17,20 @@ def update_single_line_record(builder, update_data):
         if number == 0 and number == len(builder) - 1:
             query_all += (
                 f"  {query}={builder[query]} "
-                if type(builder[query]) == int
+                if type(builder[query]) is int
                 else f'  {query}="{builder[query]}" '
             )
             break
         if number == len(builder) - 1:
             query_all += (
                 f"  {query}={builder[query]} "
-                if type(builder[query]) == int
+                if type(builder[query]) is int
                 else f'  {query}="{builder[query]}" '
             )
             break
         query_all += (
             f"  {query}={builder[query][0]} {builder[query][1]} "
-            if type(builder[query][0]) == int
+            if type(builder[query][0]) is int
             else f'  {query}="{builder[query][0]}" {builder[query][1]} '
         )
 
@@ -37,13 +38,13 @@ def update_single_line_record(builder, update_data):
         if number == len(update_data) - 1:
             update_all += (
                 f"  {update}={update_data[update]} "
-                if type(update_data[update]) == int
+                if type(update_data[update]) is int
                 else f'  {update}="{update_data[update]}" '
             )
             break
         update_all += (
             f"  {update}={update_data[update]}, "
-            if type(update_data[update]) == int
+            if type(update_data[update]) is int
             else f'  {update}="{update_data[update]}", '
         )
 

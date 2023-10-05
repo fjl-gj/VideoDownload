@@ -19,7 +19,6 @@
 import json
 import os
 
-
 # APP SETTINGS
 # ///////////////////////////////////////////////////////////////
 from app.common.constantx import CONF_FILE_PATH
@@ -29,9 +28,6 @@ from app.gui.downloader.log import logger
 class Settings(object):
     # APP PATH
     # ///////////////////////////////////////////////////////////////
-    # json_file = "settings.json"
-    # app_path = CONF_PATH
-    # settings_path = os.path.normpath(os.path.join(app_path, json_file))
     settings_path = CONF_FILE_PATH
     if not os.path.isfile(settings_path):
         logger.info(

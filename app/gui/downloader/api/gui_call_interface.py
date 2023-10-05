@@ -2,20 +2,20 @@ import os
 from copy import deepcopy
 
 import requests
+from youtube_dl import YoutubeDL
 
 from app.common.constantx import FILE_DOWNLOAD_PATH
 from app.gui.downloader.log.log import logger
-from app.gui.downloader.utils import fomart_time
 from app.gui.downloader.setting.global_var_ import globals_var
-from app.gui.downloader.utils import result_proxy
-from youtube_dl import YoutubeDL
+from app.gui.downloader.utils import fomart_time, result_proxy
 
 
 def data_parems(result, proxies):
     logger.info(FILE_DOWNLOAD_PATH)
     # _proxies = {"https": "http://127.0.0.1:1087", "http": "http://127.0.0.1:1087"}
     _headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
         "Chrome/92.0.4515.107 Safari/537.36",
     }
     duration = fomart_time(int(result.get("duration")))

@@ -1,7 +1,7 @@
 import sqlite3
 from functools import wraps
 
-from app.common.constantx import SQL_LITE_DB_PATH, DB_TABLE
+from app.common.constantx import DB_TABLE, SQL_LITE_DB_PATH
 from app.gui.downloader.log.log import logger
 
 """
@@ -93,7 +93,6 @@ class SqlLite:
         self.cur.executescript(
             f"""
         PRAGMA foreign_keys = false;
-        
         -- ----------------------------
         -- Table structure for {DB_TABLE}
         -- ----------------------------
@@ -121,7 +120,6 @@ class SqlLite:
           PRIMARY KEY ("id"),
           CONSTRAINT "id" UNIQUE ("id" ASC) ON CONFLICT IGNORE
         );
-        
         -- ----------------------------
         -- Indexes structure for table {DB_TABLE}
         -- ----------------------------
@@ -133,8 +131,8 @@ class SqlLite:
         ON "{DB_TABLE}" (
           "url_id" ASC
         );
-        
-        PRAGMA foreign_keys = true;"""
+        PRAGMA foreign_keys = true;
+        """
         )
 
     def dict_factory(self, cursor, row):

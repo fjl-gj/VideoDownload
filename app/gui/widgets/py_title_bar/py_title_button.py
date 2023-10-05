@@ -20,9 +20,9 @@
 
 # PY TITLE BUTTON
 # ///////////////////////////////////////////////////////////////
-from PySide6.QtCore import Qt, QRect, QEvent, QPoint
-from PySide6.QtGui import QPainter, QBrush, QColor, QPixmap
-from PySide6.QtWidgets import QPushButton, QLabel, QGraphicsDropShadowEffect
+from PySide6.QtCore import QEvent, QPoint, QRect, Qt
+from PySide6.QtGui import QBrush, QColor, QPainter, QPixmap
+from PySide6.QtWidgets import QGraphicsDropShadowEffect, QLabel, QPushButton
 
 
 class PyTitleButton(QPushButton):

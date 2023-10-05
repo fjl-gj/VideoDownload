@@ -17,8 +17,8 @@
 # IMPORT QT CORE
 # ///////////////////////////////////////////////////////////////
 from PySide6.QtCore import QRect
-from PySide6.QtGui import QColor, QPainter, QFont, Qt, QPen
-from PySide6.QtWidgets import QWidget, QGraphicsDropShadowEffect
+from PySide6.QtGui import QColor, QFont, QPainter, QPen, Qt
+from PySide6.QtWidgets import QGraphicsDropShadowEffect, QWidget
 
 
 class PyCircularProgress(QWidget):

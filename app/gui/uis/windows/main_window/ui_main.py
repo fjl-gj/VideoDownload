@@ -16,49 +16,37 @@
 
 # IMPORT PACKAGES AND MODULES
 # ///////////////////////////////////////////////////////////////
-from PySide6.QtWidgets import QWidget, QVBoxLayout, QFrame, QHBoxLayout
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QVBoxLayout, QWidget
 
 # IMPORT SETTINGS
 # ///////////////////////////////////////////////////////////////
 from app.gui.core.json_settings import Settings
-
 # IMPORT THEME COLORS
 # ///////////////////////////////////////////////////////////////
 from app.gui.core.json_themes import Themes
+from app.gui.core.per_load import PreLoad
 from app.gui.downloader.log.log import logger
-
 # RIGHT COLUMN
 # ///////////////////////////////////////////////////////////////
 from app.gui.downloader.setting.init_database import lite
 from app.gui.uis.columns.ui_right_column import Ui_RightColumn
-
 # IMPORT MAIN WINDOW PAGES / AND SIDE BOXES FOR APP
 # ///////////////////////////////////////////////////////////////
 from app.gui.uis.pages.ui_main_pages import Ui_MainPages
-
-# IMPORT PY ONE DARK WIDGETS
-# ///////////////////////////////////////////////////////////////
-from app.gui.widgets import *
-
-# CREDITS
-# ///////////////////////////////////////////////////////////////
-from app.gui.widgets import PyCredits
-
-
-# IMPORT QT CORE
-# ///////////////////////////////////////////////////////////////
-
-
-# IMPORT SETUP MAIN WINDOW
-# ///////////////////////////////////////////////////////////////
-
-
 # PY WINDOW
 # ///////////////////////////////////////////////////////////////
+from app.gui.widgets.py_credits_bar.py_credits import PyCredits
+from app.gui.widgets.py_left_menu.py_left_menu import PyLeftMenu
+from app.gui.widgets.py_title_bar.py_title_bar import PyTitleBar
+from app.gui.widgets.py_window.py_window import PyWindow
+
+
 class UiMainWindow(object):
     def setup_ui(self, parent):
         if not parent.objectName():
             parent.setObjectName("MainWindow")
+
+        PreLoad()
 
         # LOAD SETTINGS
         # ///////////////////////////////////////////////////////////////

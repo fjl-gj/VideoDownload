@@ -1,5 +1,6 @@
-from app.gui.downloader.setting import lite
 from functools import wraps
+
+from app.gui.downloader.setting.init_database import lite
 
 
 def init_():

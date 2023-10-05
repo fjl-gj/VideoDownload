@@ -1,8 +1,9 @@
 import threading
 
-from app.common.constantx import GLOBAL_VAR_FILE_PATH, FILE_DOWNLOAD_PATH
-from app.gui.downloader.utils import check_proxy
 from configobj import ConfigObj
+
+from app.common.constantx import FILE_DOWNLOAD_PATH, GLOBAL_VAR_FILE_PATH
+from app.gui.downloader.utils import check_proxy
 
 __all__ = ["globals_var", "GlobalVar"]
 

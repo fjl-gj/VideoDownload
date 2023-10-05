@@ -22,11 +22,10 @@ from PySide6.QtWidgets import QListWidget
 # ///////////////////////////////////////////////////////////////
 style = """
 QListWidget {{
-	background-color: {_bg_color};
-	border-radius: {_radius}px;
-	padding-left: 10px;
+    background-color: {_bg_color};
+    border-radius: {_radius}px;
+    padding-left: 10px;
     padding-right: 10px;
-	
     color: {_color};
 }}
 """

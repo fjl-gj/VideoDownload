@@ -15,27 +15,23 @@ style = """
         selection-background-color: {_context_color};
         color: {_color};
     }}
-    
     QComboBox QAbstractItemView {{
-    outline: 0px solid gray;
-    border: {_border_size}px solid transparent;
-    color: {_color};
-    background-color: {_bg_color};
-    selection-background-color: {_context_color};
+        outline: 0px solid gray;
+        border: {_border_size}px solid transparent;
+        color: {_color};
+        background-color: {_bg_color};
+        selection-background-color: {_context_color};
     }}
-    
     QComboBox::drop-down {{
-    subcontrol-origin: padding;
-    subcontrol-position: top right;
-    width: 15px;
-
-    border-left-width: 1px;
-    border-left-color: darkgray;
-    border-left-style: solid;
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
+        subcontrol-origin: padding;
+        subcontrol-position: top right;
+        width: 15px;
+        border-left-width: 1px;
+        border-left-color: darkgray;
+        border-left-style: solid;
+        border-top-right-radius: 3px;
+        border-bottom-right-radius: 3px;
     }}
-        
     QComboBox:focus {{
         border: {_border_size}px solid {_context_color};
         background-color: {_bg_color_active};
@@ -118,27 +114,23 @@ def set_stylesheet():
         selection-background-color: {_context_color};
         color: {_color};
     }}
-    
     QComboBox QAbstractItemView {{
-    outline: 0px solid gray;
-    border: {_border_size}px solid transparent;
-    color: {_color};
-    background-color: {_bg_color};
-    selection-background-color: {_context_color};
+        outline: 0px solid gray;
+        border: {_border_size}px solid transparent;
+        color: {_color};
+        background-color: {_bg_color};
+        selection-background-color: {_context_color};
     }}
-    
     QComboBox::drop-down {{
-    subcontrol-origin: padding;
-    subcontrol-position: top right;
-    width: 15px;
-
-    border-left-width: 1px;
-    border-left-color: darkgray;
-    border-left-style: solid;
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
+        subcontrol-origin: padding;
+        subcontrol-position: top right;
+        width: 15px;
+        border-left-width: 1px;
+        border-left-color: darkgray;
+        border-left-style: solid;
+        border-top-right-radius: 3px;
+        border-bottom-right-radius: 3px;
     }}
-    
     QComboBox:focus {{
         border: {_border_size}px solid {_context_color};
         background-color: {_bg_color_active};

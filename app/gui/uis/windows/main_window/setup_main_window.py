@@ -32,17 +32,20 @@ from PySide6 import QtWidgets
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QClipboard
 
-from .functions_main_window import *
+from app.gui.core.json_settings import Settings
+from app.gui.core.json_themes import Themes
+from app.gui.downloader.log import logger
+from app.gui.widgets.py_grips.py_grips import PyGrips
 
 # PY WINDOW
 # ///////////////////////////////////////////////////////////////
+from .functions_main_window import MainFunctions
 from .page_ui.download_page import PyDownloadPage
 from .page_ui.home_page import PyHomePage, PyLinkParse
 from .page_ui.setting_page import PySettingsPage
-
-
 # LOAD UI MAIN
 # ///////////////////////////////////////////////////////////////
+from .ui_main import UiMainWindow
 
 
 class SetupMainWindow:
@@ -274,8 +277,13 @@ class SetupMainWindow:
                 self.child_widget.video_select_table.cellWidget(
                     row, col
                 ).download_button.setStyleSheet(
-                    f"""border: none; padding-left: 10px; padding-right: 5px; border-radius: 8;
-                            background-color: {bg_color};"""
+                    f"""
+                        border: none;
+                        padding-left: 10px;
+                        padding-right: 5px;
+                        border-radius: 8;
+                        background-color: {bg_color};
+                    """
                 )
 
         # Download status

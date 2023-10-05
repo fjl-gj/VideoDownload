@@ -2,7 +2,7 @@ import logging
 import os
 from logging.handlers import TimedRotatingFileHandler
 
-from app.common.constantx import LOG_PATH, LOG_FILE_NAME
+from app.common.constantx import LOG_FILE_NAME, LOG_PATH
 
 
 class LogOptions:

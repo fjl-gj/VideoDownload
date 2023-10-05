@@ -24,6 +24,7 @@ import os
 class Functions:
     # SET SVG ICON
     # ///////////////////////////////////////////////////////////////
+    @staticmethod
     def set_svg_icon(icon_name):
         app_path = os.path.abspath(os.getcwd())
         folder = "static/images/svg_icons/"
@@ -33,6 +34,7 @@ class Functions:
 
     # SET SVG IMAGE
     # ///////////////////////////////////////////////////////////////
+    @staticmethod
     def set_svg_image(icon_name):
         app_path = os.path.abspath(os.getcwd())
         folder = "static/images/svg_images/"
@@ -42,6 +44,7 @@ class Functions:
 
     # SET IMAGE
     # ///////////////////////////////////////////////////////////////
+    @staticmethod
     def set_image(image_name):
         app_path = os.path.abspath(os.getcwd())
         folder = "static/images/images/"

@@ -21,13 +21,13 @@
 # ///////////////////////////////////////////////////////////////
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QColor
-from PySide6.QtWidgets import QFrame, QHBoxLayout, QGraphicsDropShadowEffect
+from PySide6.QtWidgets import QFrame, QGraphicsDropShadowEffect, QHBoxLayout
+
 from app.gui.core.json_settings import Settings
 
 # IMPORT STYLES
 # ///////////////////////////////////////////////////////////////
 from .styles import Styles
-
 
 # IMPORT QT CORE
 # ///////////////////////////////////////////////////////////////

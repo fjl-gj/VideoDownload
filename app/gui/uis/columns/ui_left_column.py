@@ -16,9 +16,9 @@
 
 # IMPORT QT CORE
 # ///////////////////////////////////////////////////////////////
-from PySide6.QtCore import QSize, QMetaObject, QCoreApplication
+from PySide6.QtCore import QCoreApplication, QMetaObject, QSize
 from PySide6.QtGui import QFont, Qt
-from PySide6.QtWidgets import QVBoxLayout, QStackedWidget, QWidget, QLabel
+from PySide6.QtWidgets import QLabel, QStackedWidget, QVBoxLayout, QWidget
 
 
 class Ui_LeftColumn(object):

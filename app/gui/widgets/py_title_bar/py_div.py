@@ -20,7 +20,7 @@
 
 # CUSTOM LEFT MENU
 # ///////////////////////////////////////////////////////////////
-from PySide6.QtWidgets import QWidget, QHBoxLayout, QFrame
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QWidget
 
 
 class PyDiv(QWidget):

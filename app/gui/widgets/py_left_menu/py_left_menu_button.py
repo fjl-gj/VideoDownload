@@ -19,19 +19,17 @@
 
 # IMPORT FUNCTIONS
 # ///////////////////////////////////////////////////////////////
-from PySide6.QtCore import Qt, QRect, QEvent, QPoint
-from PySide6.QtGui import QPainter, QColor, QPixmap
-from PySide6.QtWidgets import QPushButton, QLabel, QGraphicsDropShadowEffect
+import os
 
-from app.gui.core.functions import *
-
-
-# IMPORT QT CORE
-# ///////////////////////////////////////////////////////////////
-
+from PySide6.QtCore import QEvent, QPoint, QRect, Qt
+from PySide6.QtGui import QColor, QPainter, QPixmap
+from PySide6.QtWidgets import QGraphicsDropShadowEffect, QLabel, QPushButton
 
 # CUSTOM LEFT MENU
 # ///////////////////////////////////////////////////////////////
+from app.gui.core.functions import Functions
+
+
 class PyLeftMenuButton(QPushButton):
     def __init__(
         self,
@@ -336,9 +334,9 @@ class PyLeftMenuButton(QPushButton):
 
 class _ToolTip(QLabel):
     # TOOLTIP / LABEL StyleSheet
-    style_tooltip = """ 
-    QLabel {{		
-        background-color: {_dark_one};	
+    style_tooltip = """
+    QLabel {{
+        background-color: {_dark_one};
         color: #ffffff;
         padding-left: 10px;
         padding-right: 10px;

@@ -16,21 +16,14 @@
 
 # IMPORT LEFT COLUMN
 # ///////////////////////////////////////////////////////////////
-from PySide6.QtCore import Signal
-from PySide6.QtWidgets import QFrame, QHBoxLayout
+from PySide6.QtCore import Qt, Signal
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QVBoxLayout, QWidget
+
 from app.gui.uis.columns.ui_left_column import Ui_LeftColumn
-
-# IMPORT ICON
-# ///////////////////////////////////////////////////////////////
-from .py_icon import *
-
-# IMPORT CLOSE BUTTON
-# ///////////////////////////////////////////////////////////////
-from .py_left_button import *
-
-
 # IMPORT QT CORE
 # ///////////////////////////////////////////////////////////////
+from app.gui.widgets.py_left_column.py_icon import PyIcon
+from app.gui.widgets.py_left_column.py_left_button import PyLeftButton
 
 
 class PyLeftColumn(QWidget):

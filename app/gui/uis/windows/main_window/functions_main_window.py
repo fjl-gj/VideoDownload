@@ -22,13 +22,15 @@
 
 # LOAD UI MAIN
 # ///////////////////////////////////////////////////////////////
-from PySide6.QtCore import QPropertyAnimation, QEasingCurve, QParallelAnimationGroup
+from PySide6.QtCore import (QEasingCurve, QParallelAnimationGroup,
+                            QPropertyAnimation)
 from PySide6.QtWidgets import QPushButton
 
-from .ui_main import *
-
-
 # FUNCTIONS
+# from app.gui.uis.windows.main_window import UiMainWindow
+from app.gui.uis.windows.main_window.ui_main import UiMainWindow
+
+
 class MainFunctions:
     def __init__(self):
         super().__init__()

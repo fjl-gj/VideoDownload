@@ -23,8 +23,6 @@ import os
 # ///////////////////////////////////////////////////////////////
 from app.common.constantx import THEMES_PATH
 from app.gui.core.json_settings import Settings
-
-
 # APP THEMES
 # ///////////////////////////////////////////////////////////////
 from app.gui.downloader.log import logger
@@ -43,7 +41,8 @@ class Themes(object):
     settings_path = THEMES_FILE_PATH
     if not os.path.isfile(settings_path):
         logger.error(
-            f"WARNING: {_settings['theme_name']}.json not found! check in the folder {settings_path}"
+            f"WARNING: {_settings['theme_name']}.json not found! "
+            f"Please check in the folder {settings_path}"
         )
 
     # INIT SETTINGS

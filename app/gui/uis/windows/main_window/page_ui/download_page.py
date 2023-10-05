@@ -2,37 +2,28 @@ import os
 from concurrent.futures.thread import ThreadPoolExecutor
 
 import requests
-from PySide6.QtCore import QFileSystemWatcher
-from PySide6.QtCore import Qt, Signal
-from PySide6.QtWidgets import (
-    QDialog,
-    QFormLayout,
-    QHBoxLayout,
-    QLabel,
-    QListWidgetItem,
-    QVBoxLayout,
-    QWidget,
-)
+from PySide6.QtCore import QFileSystemWatcher, Qt, Signal
+from PySide6.QtWidgets import (QDialog, QFormLayout, QHBoxLayout, QLabel,
+                               QListWidgetItem, QVBoxLayout, QWidget)
 
 from app.gui.core.functions import Functions
 from app.gui.downloader.log.log import logger
-from app.gui.downloader.setting.database_action import (
-    delete_single_line_record,
-    select_record,
-    update_single_line_record,
-)
-from app.gui.downloader.setting.global_var_ import globals_var, GlobalVar
-from app.gui.downloader.utils import byte_to_mb
-from app.gui.downloader.utils import result_proxy
+from app.gui.downloader.setting.database_action.delete_record import \
+    delete_single_line_record
+from app.gui.downloader.setting.database_action.select_record import \
+    select_record
+from app.gui.downloader.setting.database_action.update_record import \
+    update_single_line_record
+from app.gui.downloader.setting.global_var_ import GlobalVar, globals_var
+from app.gui.downloader.utils import byte_to_mb, result_proxy
 from app.gui.uis.tools.utils import replace_other_char
-from app.gui.widgets import (
-    PyCircularProgress,
-    PyIconButton,
-    PyLabel,
-    PyListWidget,
-    PyMessageBox,
-    PyPushButton,
-)
+from app.gui.widgets.py_circular_progress.py_circular_progress import \
+    PyCircularProgress
+from app.gui.widgets.py_icon_button.py_icon_button import PyIconButton
+from app.gui.widgets.py_lable.py_lable import PyLabel
+from app.gui.widgets.py_list_widget.py_list_widget import PyListWidget
+from app.gui.widgets.py_message.py_message import PyMessageBox
+from app.gui.widgets.py_push_button.py_push_button import PyPushButton
 
 globals_var: GlobalVar
 
@@ -196,7 +187,6 @@ class PyDownloadWidget(QWidget):
         self.load_info_min.addWidget(self.link_index)
         self.load_info.addWidget(self.link_title)
         self.load_info.addLayout(self.load_info_min)
-        # self.download_data_button = PyIconButton(icon_path=Functions.set_svg_icon('icon_confirm.svg'))
 
         # LOAD DELETE PAUSE BUTTON
         self.load_button = QHBoxLayout()
@@ -221,7 +211,6 @@ class PyDownloadWidget(QWidget):
         self.load_open_folder.clicked.connect(self.open_folder)
 
         self.load_delete.clicked.connect(self.delete_status_action)
-        # self.file_system_watcher.fileChanged.connect(lambda path: self.file_changed(path))
         self.file_system_watcher.directoryChanged.connect(self.directory_changed)
         self.update_download_data()
 
@@ -404,7 +393,8 @@ class PyDownloadWidget(QWidget):
             self.down_file_size = 0
         _headers = {
             "Range": f"bytes={self.down_file_size}-{self.size}",
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+            "AppleWebKit/537.36 (KHTML, like Gecko) "
             "Chrome/92.0.4515.107 Safari/537.36",
         }
         url = (
