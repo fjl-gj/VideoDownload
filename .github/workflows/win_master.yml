@@ -10,24 +10,24 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.8
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
 
-    - name: Install Requirements
-      run: |
-        python -m pip install --upgrade pip
-        python -m pip install -r conf/requirements
+      - name: Install Sqlite
+        run: |
+          choco install sqlite
+          refreshenv
 
-    - name: Install Sqlite
-      - run: |
-        choco install sqlite
-        refreshenv
+      - name: Install Requirements
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r conf/requirements
 
-    - name: Deploy
-      run: |
-        python main.py
+      - name: Deploy
+        run: |
+          python main.py
